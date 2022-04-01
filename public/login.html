@@ -35,18 +35,18 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Xuno</a>
             <nav>
-                <button type="button" id="btnSignup" class="btn btn-outline-light logged-out"
+                <!-- <button type="button" id="btnSignup" class="btn btn-outline-light logged-out"
                     style="display: inline-block;" data-bs-toggle="modal" data-bs-target="#modal-signup"><i
                         class="bi bi-person-plus-fill"></i> Sign up</button>
                 <button type="button" id="btnLogin" class="btn btn-outline-light logged-out"
                     style="display: inline-block;" data-bs-toggle="modal" data-bs-target="#modal-login"><i
-                        class="bi bi-box-arrow-in-right"></i> Login</button>
+                        class="bi bi-box-arrow-in-right"></i> Login</button> -->
                 <span class="logged-in">
                     <span id="user-profile-name" class="display-name" style="color: white;"></span>
                     <span id="score" class="display-name" style="color: white;"></span>
                 </span>
-                <button type="button" id="btnLogout" class="btn btn-outline-light logged-in"><i
-                        class="bi bi-box-arrow-right"></i> Logout</button>
+                <!-- <button type="button" id="btnLogout" class="btn btn-outline-light logged-in"><i
+                        class="bi bi-box-arrow-right"></i> Logout</button> -->
             </nav>
         </div>
     </nav>
@@ -55,15 +55,18 @@
         <div class="row" style="height: 80vh;">
             <div class="col-12 d-flex justify-content-center align-items-center flex-wrap flex-column gap-2">
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <button type="button" class="btn btn-outline-primary btn-lg ">
-                        Start Game
-                    </button>
-                    <button type="button" class="btn btn-outline-primary btn-lg ">
-                        Match history
-                    </button>
-                    <button type="button" class="btn btn-outline-primary btn-lg ">
+                    <button type="button" id="btnSignup" class="btn btn-outline-primary btn-lg logged-out"
+                        style="display: inline-block;" data-bs-toggle="modal" data-bs-target="#modal-signup"><i
+                            class="bi bi-person-plus-fill"></i> Sign up</button>
+                    <button type="button" id="btnLogin" class="btn btn-outline-primary btn-lg logged-out"
+                        style="display: inline-block;" data-bs-toggle="modal" data-bs-target="#modal-login"><i
+                            class="bi bi-box-arrow-in-right"></i> Login</button>
+                    <button type="button" id="btnLogout" class="btn btn-outline-primary btn-lg logged-in"><i
+                            class="bi bi-box-arrow-right"></i> Logout</button>
+                    <!-- <button type="button" class="btn btn-outline-primary btn-lg ">
                         How to play
-                    </button>
+                    </button> -->
+
                 </div>
             </div>
         </div>
