@@ -46,9 +46,9 @@
         <div class="row" style="height: 80vh;">
             <div class="col-12 d-flex justify-content-center align-items-center flex-wrap flex-column gap-2">
                 <div class="d-grid gap-3 col-6 mx-auto">
-                    <button type="button" class="btn btn-outline-primary main-bt btn-lg ">
-                        Start Game
-                    </button>
+                    <a onclick="Create()" class="btn btn-outline-primary main-bt btn-lg">
+                        Create Game
+                    </a>
                     <button type="button" class="btn btn-outline-primary main-bt btn-lg ">
                         Match history
                     </button>
@@ -131,6 +131,7 @@
         firebase.initializeApp(firebaseConfig);
     </script>
     <script type="text/javascript" src="auth.js"></script>
+    <script type="text/javascript" src="games.js"></script>
 </body>
 
 </html>
