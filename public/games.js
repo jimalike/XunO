@@ -12,7 +12,7 @@ function makeid(length) {
     for (var i = 0; i < length; i++) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
-    ref.child('Roomlist').update({
+    ref.child('Roomlist').push({
         Room: result
     });
     return result;
