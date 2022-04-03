@@ -37,9 +37,26 @@ function Create() {
 const params = new Proxy(new URLSearchParams(window.location.search), { get: (searchParams, prop) => searchParams.get(prop), })
 console.log(params.id);
 
+const refroom = firebase.database().ref('Game/' + 'Roomlist/');
 
 
-ref.on('value', snapshot => {
+function ReadList(snapshot) {
+    snapshot.forEach((data) => {
+        const Room = data.val().Room;
+        console.log(Room);
+    });
+};
+refroom.on('value', (snapshot) => {
+    // then(function (dataSnapshot) {
+    //     dataSnapshot.forEach(function(childSnapshot) {
+    //         var childkey = childSnapshot.key;
+    //         var childData = childSnapshot.val();
+    //         // console.log(childkey);
 
+    //     });
+});
+
+refroom.on('value', snapshot => {
+    ReadList(snapshot)
 
 })
