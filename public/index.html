@@ -29,48 +29,28 @@
     </style>
 </head>
 
-<body>
-    <!--Navigation bar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Xuno</a>
-            <nav>
-                <!-- <button type="button" id="btnSignup" class="btn btn-outline-light logged-out"
-                    style="display: inline-block;" data-bs-toggle="modal" data-bs-target="#modal-signup"><i
-                        class="bi bi-person-plus-fill"></i> Sign up</button>
-                <button type="button" id="btnLogin" class="btn btn-outline-light logged-out"
-                    style="display: inline-block;" data-bs-toggle="modal" data-bs-target="#modal-login"><i
-                        class="bi bi-box-arrow-in-right"></i> Login</button> -->
-                <span class="logged-in">
-                    <span id="user-profile-name" class="display-name" style="color: white;"></span>
-                    <span id="score" class="display-name" style="color: white;"></span>
-                </span>
-                <!-- <button type="button" id="btnLogout" class="btn btn-outline-light logged-in"><i
-                        class="bi bi-box-arrow-right"></i> Logout</button> -->
-            </nav>
-        </div>
-    </nav>
-
+<body style="height: 100vh;" class="d-flex align-items-center">
     <div class="container">
         <div class="row" style="height: 80vh;">
-            <div class="col-12 d-flex justify-content-center align-items-center flex-wrap flex-column gap-2">
-                <div class="d-grid gap-2 col-6 mx-auto">
-                    <button type="button" id="btnSignup" class="btn btn-outline-primary btn-lg logged-out"
-                        style="display: inline-block;" data-bs-toggle="modal" data-bs-target="#modal-signup"><i
-                            class="bi bi-person-plus-fill"></i> Sign up</button>
-                    <button type="button" id="btnLogin" class="btn btn-outline-primary btn-lg logged-out"
-                        style="display: inline-block;" data-bs-toggle="modal" data-bs-target="#modal-login"><i
-                            class="bi bi-box-arrow-in-right"></i> Login</button>
-                    <button type="button" id="btnLogout" class="btn btn-outline-primary btn-lg logged-in"><i
-                            class="bi bi-box-arrow-right"></i> Logout</button>
-                    <a type="button" class="btn btn-outline-primary btn-lg logged-in " href="jimmy.html">
-                        Go on
-                        </a>
-                    <!-- <button type="button" class="btn btn-outline-primary btn-lg ">
-                        How to play
-                    </button> -->
-
+            <div class="col-12 d-flex flex-column justify-content-center align-items-center flex-wrap flex-column gap-2" style="background-color: #babad1; border-radius: 30px; border: 15px solid white;">
+                <div class="d-flex flex-row">
+                    <h1 style="font-size: 10em; color: #CAE7B9;"><b>X</b></h1>
+                    <h1 style="font-size: 10em; color: #F3DE8A;"><b>u</b></h1>
+                    <h1 style="font-size: 10em; color: #EB9486;"><b>n</b></h1>
+                    <h1 style="font-size: 10em; color: #7E7F9A;"><b>O</b></h1>
                 </div>
+                <hr>
+                <button type="button" id="btnSignup" class="btn frontpgbtn btn-lg logged-out"
+                    style="display: inline-block; width: 30vh; max-width: 500px;" data-bs-toggle="modal" data-bs-target="#modal-signup"><i
+                        class="bi bi-person-plus-fill"></i> Sign up</button>
+                <button type="button" id="btnLogin" class="btn frontpgbtn btn-lg logged-out"
+                    style="display: inline-block; width: 30vh; max-width: 500px;" data-bs-toggle="modal" data-bs-target="#modal-login"><i
+                        class="bi bi-box-arrow-in-right"></i> Login</button>
+                <button type="button" id="btnLogout" class="btn btn-outline-primary btn-lg logged-in" style="visibility: hidden;"><i
+                    class="bi bi-box-arrow-right"></i> Logout</button>
+                <!-- <button type="button" class="btn btn-outline-primary btn-lg ">
+                    How to play
+                </button> -->
             </div>
         </div>
     </div>

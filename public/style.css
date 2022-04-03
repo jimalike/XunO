@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(151, 194, 204);
+    background-color: #97A7B3;
     /* background: #97A7B3; */
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -26,4 +26,15 @@ body {
 }
 .link:hover{
     color: black;
+}
+
+.frontpgbtn {
+    background-color: #EB9486;;
+    border-radius: 10px;
+    transition: 0.3s;
+    border: 5px solid white;
+}
+
+.frontpgbtn:hover{
+    transform: scale(1.1);
 }

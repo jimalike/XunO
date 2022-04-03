@@ -19,6 +19,7 @@ function createUser(event) {
                 signupForm.reset();
                 signupFeedback.innerHTML = ``
             }, 1000);
+            window.location.href = `jimmy.html`;
         })
         .catch((error) => {
             signupFeedback.style = `color:crimson`;
@@ -66,6 +67,7 @@ function loginUser(event) {
                 loginForm.reset();
                 loginFeedback.innerHTML = ``
             }, 1000);
+            window.location.href = `jimmy.html`;
         })
         .catch((error) => {
             loginFeedback.style = `color:crimson`;
