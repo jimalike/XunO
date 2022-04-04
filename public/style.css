@@ -8,16 +8,17 @@ body {
     background-color: #7E7F9A;
 }
 .main-bt {
-    background-color:  #E4C05F;
+    background-color:  #EB9486;
     color: black;
-    border: 0px;
+    border: 5px solid white;
 }
 .main-bt:hover{
-    transition: 0.2 s;
+    transition: 0.3s;
     transform: scale(1.1);
-    background-color: #E4C05F;
+    background-color: #EB9486;
     border: 0px;
     color: black;
+    border: 5px solid white;
 }
 
 .link{
@@ -29,7 +30,7 @@ body {
 }
 
 .frontpgbtn {
-    background-color: #EB9486;;
+    background-color: #EB9486;
     border-radius: 10px;
     transition: 0.3s;
     border: 5px solid white;
@@ -37,4 +38,7 @@ body {
 
 .frontpgbtn:hover{
     transform: scale(1.1);
+}
+.select{
+    cursor: pointer;
 }

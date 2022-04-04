@@ -13,6 +13,7 @@ function makeid(length) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     ref.child('Roomlist').push({
+        
         Room: result
     });
     return result;
@@ -46,7 +47,7 @@ function ReadList(snapshot) {
         console.log(Room);
     });
 };
-refroom.on('value', (snapshot) => {
+ref.on('value', (snapshot) => {
     // then(function (dataSnapshot) {
     //     dataSnapshot.forEach(function(childSnapshot) {
     //         var childkey = childSnapshot.key;

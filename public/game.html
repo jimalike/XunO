@@ -26,120 +26,165 @@
         .modal-backdrop {
             display: none;
         }
+
+        html,
+        body {
+            height: 100%;
+        }
+        .text-RGB {
+            background: linear-gradient(to right, #30CFD0, #cc6ed8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;        
+        }
+        p{
+            margin: 0;
+            padding: 0;
+        }
     </style>
 </head>
 
-<body>
-    <div class="d-flex align-items-center">
-        <div class="container play-game" style="font-size:5vh;">
-            <div class="row" id="row-1" style="height: 20vh;">
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-1-col-1"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+<body style="background-color: #1D1E22;">
+
+    <!-- style="position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%);" -->
+    <!-- style="display: flex; align-items: center; justify-content: center; height: 100%;" -->
+    <div class="d-flex justify-content-center align-items-center pt-5">
+        <h2 class="text-RGB"><span>This is game for you</span></h2>
+    </div>
+    <div style="display: flex; align-items: center; justify-content: center; height: 80%;">
+        <div class=" align-items-center" style=" width: 80vh; ">
+            <div class="row" style="height: 15vh;">
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3 select" >
+                    <p>
+                        ⭕
+                    </p>
                 </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-1-col-2"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3" >
+                    <p>
+                        ❌
+                    </p>
                 </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-1-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3" ">
+                    <p>
+                        ❌
+                    </p>
                 </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-1-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ⭕
+                    </p>
                 </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-1-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
-                </div>
-            </div>
-            <div class="row" id="row-2" style="height: 20vh;">
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-2-col-1"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
-                </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-2-col-2"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
-                </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-2-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
-                </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-1-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
-                </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-1-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ❌
+                    </p>
                 </div>
             </div>
-            <div class="row" id="row-3" style="height: 20vh;">
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-3-col-1"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+            <div class="row" style="height: 15vh;">
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ❌
+                    </p>
                 </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-3-col-2"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ⭕
+                    </p>
                 </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-3-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ❌
+                    </p>
                 </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-1-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ⭕
+                    </p>
                 </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-1-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
-                </div>
-            </div>
-            <div class="row" id="row-3" style="height: 20vh;">
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-3-col-1"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
-                </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-3-col-2"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
-                </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-3-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
-                </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-1-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
-                </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-1-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ❌
+                    </p>
                 </div>
             </div>
-            <div class="row" id="row-3" style="height: 20vh;">
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-3-col-1"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+            <div class="row" style="height: 15vh;">
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ❌
+                    </p>
                 </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-3-col-2"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ⭕
+                    </p>
                 </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-3-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ❌
+                    </p>
                 </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-1-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ⭕
+                    </p>
                 </div>
-                <div class="col border justify-content-center align-items-center table-col d-flex" id="row-1-col-3"
-                    onclick="buttonXO(this)">
-                    <p class="display-4"></p>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ❌
+                    </p>
+                </div>
+            </div>
+            <div class="row" style="height: 15vh;">
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ⭕
+                    </p>
+                </div>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ❌
+                    </p>
+                </div>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ❌
+                    </p>
+                </div>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ❌
+                    </p>
+                </div>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ❌
+                    </p>
+                </div>
+            </div>
+            <div class="row" style="height: 15vh;">
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ⭕
+                    </p>
+                </div>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ❌
+                    </p>
+                </div>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ❌
+                    </p>
+                </div>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ⭕
+                    </p>
+                </div>
+                <div class="col border justify-content-center align-items-center table-col d-flex border-3">
+                    <p>
+                        ❌
+                    </p>
                 </div>
             </div>
         </div>
