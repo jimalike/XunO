@@ -43,7 +43,7 @@ body {
 }
 .select{
     cursor: pointer;
-
+}
 .gone {
     opacity: 0;
     height: 0;
