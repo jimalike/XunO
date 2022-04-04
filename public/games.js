@@ -10,12 +10,31 @@ function makeid(length) {
     for (var i = 0; i < length; i++) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
+    const currentUser = firebase.auth().currentUser;
+    if (currentUser) {
+        Playerx = 
+        console.log(currentUser.email);
+    }
     ref.child('Roomlist').push({
-        Room: result
+        Room: result,
+        PlayerX: currentUser.email,
+        PlayerXuid: currentUser.uid,
     });
     return result;
 }
 
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      var uid = user.uid;
+      var email = user.email
+      console.log(uid)
+      console.log(email)
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
 // firebase.auth().onAuthStateChange((user) => {
 //     setupUI(user);
 // })
