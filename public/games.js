@@ -3,8 +3,6 @@ const ref = firebase.database().ref("Game");
 const creategame = document.querySelector(".creategame");
 
 
-
-
 function makeid(length) {
     var result = '';
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -13,7 +11,6 @@ function makeid(length) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     ref.child('Roomlist').push({
-        
         Room: result
     });
     return result;
@@ -29,7 +26,6 @@ function makeid(length) {
 function Create() {
     // console.log("โหล")
     window.location.href = `game.html?id=${makeid(10)}`
-
 }
 
 // const currentUser = firebase.auth().currentUser;
@@ -62,7 +58,7 @@ refroom.on('value', snapshot => {
 
 })
 
-function joinToggle(){
+function joinToggle() {
     var joinDiv = document.getElementById('joinDiv');
     joinDiv.classList.toggle("gone");
 }
