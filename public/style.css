@@ -11,6 +11,7 @@ body {
     background-color:  #E4C05F;
     color: black;
     border: 0px;
+    transition: 0.3s;
 }
 .main-bt:hover{
     transition: 0.2 s;
@@ -37,4 +38,14 @@ body {
 
 .frontpgbtn:hover{
     transform: scale(1.1);
+}
+
+.gone {
+    opacity: 0;
+    height: 0;
+    visibility: collapse;
+}
+
+#joinDiv {
+    transition: 1s;
 }

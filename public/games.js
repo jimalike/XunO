@@ -60,3 +60,8 @@ refroom.on('value', snapshot => {
     ReadList(snapshot)
 
 })
+
+function joinToggle(){
+    var joinDiv = document.getElementById('joinDiv');
+    joinDiv.classList.toggle("gone");
+}
