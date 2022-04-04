@@ -11,6 +11,8 @@ body {
     background-color:  #EB9486;
     color: black;
     border: 5px solid white;
+    border: 0px;
+    transition: 0.3s;
 }
 .main-bt:hover{
     transition: 0.3s;
@@ -41,4 +43,13 @@ body {
 }
 .select{
     cursor: pointer;
+
+.gone {
+    opacity: 0;
+    height: 0;
+    visibility: collapse;
+}
+
+#joinDiv {
+    transition: 1s;
 }
