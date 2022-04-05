@@ -12,11 +12,10 @@ function makeid(length) {
     }
     const currentUser = firebase.auth().currentUser;
     if (currentUser) {
-        Playerx = 
-        console.log(currentUser.email);
+        Playerx =
+            console.log(currentUser.email);
     }
-    ref.child('Roomlist').push({
-        Room: result,
+    ref.child(result).update({
         PlayerX: currentUser.email,
         PlayerXuid: currentUser.uid,
     });
@@ -25,16 +24,16 @@ function makeid(length) {
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      var uid = user.uid;
-      var email = user.email
-      console.log(uid)
-      console.log(email)
-      // ...
+        var uid = user.uid;
+        var email = user.email
+        console.log(uid)
+        console.log(email)
+        // ...
     } else {
-      // User is signed out
-      // ...
+        // User is signed out
+        // ...
     }
-  });
+});
 // firebase.auth().onAuthStateChange((user) => {
 //     setupUI(user);
 // })
@@ -56,12 +55,6 @@ console.log(params.id);
 const refroom = firebase.database().ref('Game/' + 'Roomlist/');
 
 
-function ReadList(snapshot) {
-    snapshot.forEach((data) => {
-        const Room = data.val().Room;
-        console.log(Room);
-    });
-};
 ref.on('value', (snapshot) => {
     // then(function (dataSnapshot) {
     //     dataSnapshot.forEach(function(childSnapshot) {
@@ -71,8 +64,15 @@ ref.on('value', (snapshot) => {
 
     //     });
 });
-
-refroom.on('value', snapshot => {
+var jim = [];
+function ReadList(snapshot) {
+    snapshot.forEach((data) => {
+        const Room = data.key;
+        jim.push(Room)
+        console.log(Room);
+    });
+};
+ref.on('value', snapshot => {
     ReadList(snapshot)
 
 })
@@ -80,4 +80,22 @@ refroom.on('value', snapshot => {
 function joinToggle() {
     var joinDiv = document.getElementById('joinDiv');
     joinDiv.classList.toggle("gone");
+}
+
+console.log(jim);
+const roominput = document.querySelector('#roominput');
+// roominput.addEventListener('button', gotoroom);
+function join() {
+    jim.forEach((roomid) => {
+        if (roominput.value === roomid) {
+            const currentUser = firebase.auth().currentUser;
+            ref.child(roominput.value).update({
+                PlayerO: currentUser.email,
+                PlayerOuid: currentUser.uid,
+            });
+            window.location.href = `game.html?id=${roomid}`;
+        }
+
+    });
+
 }
