@@ -18,6 +18,8 @@ function makeid(length) {
     ref.child(result).update({
         PlayerX: currentUser.email,
         PlayerXuid: currentUser.uid,
+        PlayerO: 0,
+        PlayerOuid: 0,
     });
     return result;
 }
