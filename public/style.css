@@ -1,14 +1,15 @@
 body {
-    background-color: #97A7B3;
+    background-color: #1D1E22;;
     /* background: #97A7B3; */
     background-repeat: no-repeat;
     background-attachment: fixed;
+    font-family: 'Montserrat', sans-serif;
 }
 .navcolor{
     background-color: #7E7F9A;
 }
 .main-bt {
-    background-color:  #EB9486;
+    background-color:  #c0d3ff;
     color: black;
     border: 5px solid white;
     border: 0px;
@@ -16,8 +17,8 @@ body {
 }
 .main-bt:hover{
     transition: 0.3s;
-    transform: scale(1.1);
-    background-color: #EB9486;
+    transform: scale(1.05);
+    background-color: #c0d3ff;
     border: 0px;
     color: black;
     border: 5px solid white;
@@ -31,16 +32,6 @@ body {
     color: black;
 }
 
-.frontpgbtn {
-    background-color: #EB9486;
-    border-radius: 10px;
-    transition: 0.3s;
-    border: 5px solid white;
-}
-
-.frontpgbtn:hover{
-    transform: scale(1.1);
-}
 .select{
     cursor: pointer;
 }
@@ -53,4 +44,8 @@ body {
 
 #joinDiv {
     transition: 1s;
+}
+
+hr{
+    color: #EB9486;
 }
