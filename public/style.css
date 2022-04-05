@@ -47,7 +47,8 @@ body {
 .gone {
     opacity: 0;
     height: 0;
-    visibility: collapse;
+    overflow: hidden;
+    margin: 0;
 }
 
 #joinDiv {
