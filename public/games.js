@@ -12,8 +12,7 @@ function makeid(length) {
     }
     const currentUser = firebase.auth().currentUser;
     if (currentUser) {
-        Playerx =
-            console.log(currentUser.email);
+        Playerx = console.log(currentUser.email);
     }
     ref.child(result).update({
         PlayerX: currentUser.email,
@@ -47,44 +46,39 @@ function Create() {
 const params = new Proxy(new URLSearchParams(window.location.search), { get: (searchParams, prop) => searchParams.get(prop), })
 console.log(params.id);
 const roomcodeDisplay = document.querySelector("#roomcodeDisplay")
-roomcodeDisplay.innerHTML = `Your room code is : <p id="copycode" style="color: red; display: inline-block">${params.id}</p>`
+// id key ห้อง 
+if (roomcodeDisplay != null) {
+    roomcodeDisplay.innerHTML = `Your room code is : <p id="copycode" style="color: red; display: inline-block">${params.id}</p>`;
+}
 
 const refroom = firebase.database().ref('Game/' + 'Roomlist/');
 
 
-ref.on('value', (snapshot) => {
-    // then(function (dataSnapshot) {
-    //     dataSnapshot.forEach(function(childSnapshot) {
-    //         var childkey = childSnapshot.key;
-    //         var childData = childSnapshot.val();
-    //         // console.log(childkey);
-
-    //     });
-});
 // เอา key ห้องแต่ละอย่างใส่ไปใน array
-var ListRoom = [];
+var jim = [];
 function ReadList(snapshot) {
     snapshot.forEach((data) => {
         const Room = data.key;
-        ListRoom.push(Room)
+        jim.push(Room)
+        console.log(jim);
     });
 };
 ref.on('value', snapshot => {
     ReadList(snapshot)
 
-})
+});
+console.log(jim);
 // ปุ่มในหน้า่ main menu
 function joinToggle() {
     var joinDiv = document.getElementById('joinDiv');
     joinDiv.classList.toggle("gone");
 }
 
-console.log(ListRoom);
 // เช็ตห้องว่าตรงไหม main menu
 const roominput = document.querySelector('#roominput');
 // roominput.addEventListener('button', gotoroom);
 function join() {
-    ListRoom.forEach((roomid) => {
+    jim.forEach((roomid) => {
         if (roominput.value === roomid) {
             const currentUser = firebase.auth().currentUser;
             ref.child(roominput.value).update({
@@ -103,6 +97,20 @@ function Cancel() {
     var refroomdelete = firebase.database().ref(`Game/` + `${params.id}`);
     refroomdelete.remove();
 }
+
+// var playerx = firebase.database().ref(`Game/` + `${params.id}` + `PlayerX`);
+ref.on('value', snapshot => {
+    Playerx = snapshot.child(`${params.id}`).child('PlayerX').val();
+    Playero = snapshot.child(`${params.id}`).child('PlayerO').val();
+    const currentUser = firebase.auth().currentUser;
+    console.log(currentUser.email);
+    if (Playero == "") {
+        console.log("robo");
+    }
+    else if (Playero == currentUser.email) {
+        console.log("robologin")
+    }
+});
 // ฟังก์ชันท์ Copy text
 // function copytext(element) {
 //     var $temp = $("<input>");
