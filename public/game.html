@@ -46,14 +46,35 @@
     </style>
 </head>
 
-<body>
+<script>
+
+</script>
+
+<body style="position: relative;">
+    <div id="waitpanel" style="border: 5px solid black; 
+    width: 70vw; 
+    height: 50vh; 
+    border-radius: 10px;  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #ffffff;">
+        <h1>Waiting for player 2 ...</h1 style="background-color"><hr>
+        <h1 id="roomcodeDisplay">Your room code: </h1>
+        <button class="main-bt" style="width: 200px;">Cancel</button>
+    </div>
 
     <!-- style="position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%);" -->
     <!-- style="display: flex; align-items: center; justify-content: center; height: 100%;" -->
-    <div class="d-flex justify-content-center align-items-center pt-5">
+    <div class="d-flex justify-content-center align-items-center pt-5 wait">
         <h2 class="text-RGB">Player <span></span> turn.</h2>
     </div>
-    <div class="d-flex justify-content-center align-items-center" style="height: 70vh;">
+    <div class="d-flex justify-content-center align-items-center wait" style="height: 70vh;">
         <div id="gamePanel" style="display: flex; align-items: center; justify-content: center; height: 600; align-self: center; margin-top: 5%;">
             <div class="align-items-center" style="width: 50vh;">
                 <div class="row" style="height: 10vh;">
@@ -194,7 +215,7 @@
             </div>
         </div>
     </div>
-    <div class="cardbox" style="height: 70vh; width: 20vw; border: 5px solid #30CFD0; border-radius: 10px; position: absolute; top: 15vh; right: 10vw; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <div class="cardbox wait" style="height: 70vh; width: 20vw; border: 5px solid #30CFD0; border-radius: 10px; position: absolute; top: 15vh; right: 10vw; display: flex; flex-direction: column; justify-content: center; align-items: center;">
         <div id="card Effect" style="width: 90%; height: 60%; background-color: #cc6ed8; border-radius: 10px;"></div>
         <button style="border: 5px solid #ffffff; border-radius: 10px; background-color: transparent; width: 100px; height: 40px; color: white; margin-top: 20px;">Draw</button>
     </div>

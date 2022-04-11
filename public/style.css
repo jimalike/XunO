@@ -22,6 +22,7 @@ body {
     border: 0px;
     color: black;
     border: 5px solid white;
+    border-radius: 3px;
 }
 
 .link{
@@ -48,4 +49,11 @@ body {
 
 hr{
     color: #EB9486;
+}
+
+.wait{
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    margin: 0;
 }
