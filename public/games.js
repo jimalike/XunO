@@ -1,5 +1,4 @@
 const ref = firebase.database().ref("Game");
-
 const creategame = document.querySelector(".creategame");
 
 // ฟังค์ชันสร้าง เลขห้อง
@@ -17,8 +16,8 @@ function makeid(length) {
     ref.child(result).update({
         PlayerX: currentUser.email,
         PlayerXuid: currentUser.uid,
-        PlayerO: 0,
-        PlayerOuid: 0,
+        PlayerO: "",
+        PlayerOuid: "",
     });
     return result;
 }
@@ -29,8 +28,8 @@ firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         var uid = user.uid;
         var email = user.email
-        console.log(uid)
-        console.log(email)
+        // console.log(uid)
+        // console.log(email)
         // ...
     } else {
         // User is signed out
@@ -103,12 +102,19 @@ ref.on('value', snapshot => {
     Playerx = snapshot.child(`${params.id}`).child('PlayerX').val();
     Playero = snapshot.child(`${params.id}`).child('PlayerO').val();
     const currentUser = firebase.auth().currentUser;
+    const wait = document.querySelectorAll('.wait');
+    const waitpanel = document.querySelectorAll('#waitpanel');
     console.log(currentUser.email);
     if (Playero == "") {
-        console.log("robo");
+        wait.forEach(item => item.style.display = 'none');
+        waitpanel.forEach(item => item.style.display = 'flex');
+        // console.log("robo");
+        console.log(currentUser.email);
     }
-    else if (Playero == currentUser.email) {
-        console.log("robologin")
+    else {
+        wait.forEach(item => item.style.display = 'flex');
+        waitpanel.forEach(item => item.style.display = 'none');
+        // console.log("robologin")
     }
 });
 // ฟังก์ชันท์ Copy text

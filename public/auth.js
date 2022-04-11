@@ -104,7 +104,6 @@ function getUser() {
 }
 
 
-
 const logoutItems = document.querySelectorAll('.logged-out');
 const loginItems = document.querySelectorAll('.logged-in');
 // const btnItems = document.querySelectorAll('.logged-out');
