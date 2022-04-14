@@ -145,7 +145,7 @@ function buttonXO(btn) {
         Playerx = snapshot.child(`${params.id}`).child('PlayerX').val();
         Playero = snapshot.child(`${params.id}`).child('PlayerO').val();
         //check player X Y to put X, Y inner button (Update Realtime by using database)
-        if (turn == 'X' && btn.querySelector('.display-4').innerHTML == '') {
+        if (playerx.val() == currentUser.email && turn == 'X' && btn.querySelector('.display-4').innerHTML == '') {
             btn.querySelector('.display-4').innerHTML = 'X';
             ref.child(`${params.id}`).update({
                 turn: `O`,
@@ -154,7 +154,7 @@ function buttonXO(btn) {
                 [btnID]: `X`,
             })
         }
-        if (turn == 'O' && btn.querySelector('.display-4').innerHTML == '') {
+        if (playero.val() == currentUser.email && turn == 'O' && btn.querySelector('.display-4').innerHTML == '') {
             btn.querySelector('.display-4').innerHTML = 'O';
             ref.child(`${params.id}`).update({
                 turn: `X`,
