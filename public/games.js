@@ -18,6 +18,7 @@ function makeid(length) {
         PlayerXuid: currentUser.uid,
         PlayerO: "",
         PlayerOuid: "",
+        Gamestate: "TurnX",
     });
     return result;
 }
@@ -125,3 +126,13 @@ ref.on('value', snapshot => {
 //     document.execCommand("copy");
 //     $temp.remove();
 //   }
+
+// randoming cards
+
+const cardtype = ["draw2", "skip", "delete2"];
+function randomCard() {
+    var display = cardtype[Math.floor(Math.random() * 3)];
+    document.querySelector("#cardEffect").innerHTML = display;
+    console.log(display);
+
+}  
