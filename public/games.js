@@ -124,15 +124,6 @@ ref.on('value', snapshot => {
 //     $temp.remove();
 //   }
 
-// randoming cards
-
-const cardtype = ["draw2", "skip", "delete2"];
-function randomCard() {
-    var display = cardtype[Math.floor(Math.random() * 3)];
-    document.querySelector("#cardEffect").innerHTML = display;
-    console.log(display);
-
-}
 //  ฟังก์ชันใส่ x o บน ตาราง
 function buttonXO(btn) {
     // checkWin();
@@ -145,7 +136,7 @@ function buttonXO(btn) {
         Playerx = snapshot.child(`${params.id}`).child('PlayerX').val();
         Playero = snapshot.child(`${params.id}`).child('PlayerO').val();
         //check player X Y to put X, Y inner button (Update Realtime by using database)
-        if (playerx.val() == currentUser.email && turn == 'X' && btn.querySelector('.display-4').innerHTML == '') {
+        if (turn == 'X' && btn.querySelector('.display-4').innerHTML == '') {
             btn.querySelector('.display-4').innerHTML = 'X';
             ref.child(`${params.id}`).update({
                 turn: `O`,
@@ -154,7 +145,7 @@ function buttonXO(btn) {
                 [btnID]: `X`,
             })
         }
-        if (playero.val() == currentUser.email && turn == 'O' && btn.querySelector('.display-4').innerHTML == '') {
+        if (turn == 'O' && btn.querySelector('.display-4').innerHTML == '') {
             btn.querySelector('.display-4').innerHTML = 'O';
             ref.child(`${params.id}`).update({
                 turn: `X`,
@@ -185,4 +176,64 @@ ref.on('value', snapshot => {
         }
     }
 });
+
+
+// randoming cards สุ่มการ์ด
+
+const cardtype = ["draw2", "skip", "delete2"];
+function randomCard() {
+    var display = cardtype[Math.floor(Math.random() * 3)];
+    document.querySelector("#cardEffect").innerHTML = display;
+    console.log(display);
+    if (display == "draw2") {
+            btn_table.forEach(item => item.removeAttribute("onclick"));
+            btn_table.forEach(item => item.onclick = draw())
+            document.querySelector('#randombtn').disabled = true;
+    }
+}
+function draw() {
+    console.log("goodbye");
+}
+    // ref.once('value', snapshot => {
+        // turn = snapshot.child(`${params.id}`).child('turn').val();
+        // btnID = btn.getAttribute('id');
+        // Playerx = snapshot.child(`${params.id}`).child('PlayerX').val();
+        // Playero = snapshot.child(`${params.id}`).child('PlayerO').val();
+        // countx = 0;
+        // counto = 0;
+        //check player X Y to put X, Y inner button (Update Realtime by using database) ลง 2 ที
+        // if (turn == 'X' && btn.querySelector('.display-4').innerHTML == '' && count != 2) {
+        //     btn.querySelector('.display-4').innerHTML = 'X';
+        //     ref.child(`${params.id}`).update({
+        //         turn: `X`,
+        //     });
+        //     ref.child(`${params.id}`).child('table').update({
+        //         [btnID]: `X`,
+        //     })
+        //     countx += 1;
+        // }
+        // else {
+        //     ref.child(`${params.id}`).update({
+        //         turn: `O`,
+        //     });
+        //     countx = 0;
+        // }
+        // if (turn == 'O' && btn.querySelector('.display-4').innerHTML == '' && count != 2) {
+        //     btn.querySelector('.display-4').innerHTML = 'X';
+        //     ref.child(`${params.id}`).update({
+        //         turn: `O`,
+        //     });
+        //     ref.child(`${params.id}`).child('table').update({
+        //         [btnID]: `O`,
+        //     })
+        //     counto += 1;
+        // }
+        // else {
+        //     ref.child(`${params.id}`).update({
+        //         turn: `X`,
+        //     });
+        //     countx = 0;
+        // }
+//     });
+// }
 
