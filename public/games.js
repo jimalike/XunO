@@ -18,7 +18,7 @@ function makeid(length) {
         PlayerXuid: currentUser.uid,
         PlayerO: "",
         PlayerOuid: "",
-        Gamestate: "TurnX",
+        turn: "X",
     });
     return result;
 }
@@ -60,12 +60,10 @@ function ReadList(snapshot) {
     snapshot.forEach((data) => {
         const Room = data.key;
         jim.push(Room)
-        console.log(jim);
     });
 };
 ref.on('value', snapshot => {
     ReadList(snapshot)
-
 });
 console.log(jim);
 // ปุ่มในหน้า่ main menu
@@ -98,19 +96,18 @@ function Cancel() {
     refroomdelete.remove();
 }
 
-// var playerx = firebase.database().ref(`Game/` + `${params.id}` + `PlayerX`);
 ref.on('value', snapshot => {
     Playerx = snapshot.child(`${params.id}`).child('PlayerX').val();
     Playero = snapshot.child(`${params.id}`).child('PlayerO').val();
     const currentUser = firebase.auth().currentUser;
     const wait = document.querySelectorAll('.wait');
     const waitpanel = document.querySelectorAll('#waitpanel');
-    console.log(currentUser.email);
+    // console.log(currentUser.email);
     if (Playero == "") {
         wait.forEach(item => item.style.display = 'none');
         waitpanel.forEach(item => item.style.display = 'flex');
         // console.log("robo");
-        console.log(currentUser.email);
+        // console.log(currentUser.email);
     }
     else {
         wait.forEach(item => item.style.display = 'flex');
@@ -135,4 +132,57 @@ function randomCard() {
     document.querySelector("#cardEffect").innerHTML = display;
     console.log(display);
 
-}  
+}
+//  ฟังก์ชันใส่ x o บน ตาราง
+function buttonXO(btn) {
+    // checkWin();
+    var gameState = '';
+    let turn = `turn`;
+    const currentUser = firebase.auth().currentUser;
+    ref.once('value', snapshot => {
+        turn = snapshot.child(`${params.id}`).child('turn').val();
+        btnID = btn.getAttribute('id');
+        Playerx = snapshot.child(`${params.id}`).child('PlayerX').val();
+        Playero = snapshot.child(`${params.id}`).child('PlayerO').val();
+        //check player X Y to put X, Y inner button (Update Realtime by using database)
+        if (turn == 'X' && btn.querySelector('.display-4').innerHTML == '') {
+            btn.querySelector('.display-4').innerHTML = 'X';
+            ref.child(`${params.id}`).update({
+                turn: `O`,
+            });
+            ref.child(`${params.id}`).child('table').update({
+                [btnID]: `X`,
+            })
+        }
+        if (turn == 'O' && btn.querySelector('.display-4').innerHTML == '') {
+            btn.querySelector('.display-4').innerHTML = 'O';
+            ref.child(`${params.id}`).update({
+                turn: `X`,
+            });
+            ref.child(`${params.id}`).child('table').update({
+                [btnID]: `O`,
+            })
+        }
+    });
+}
+
+// function checkWin() {
+//     ref.once('value', snapshot => {
+//         if()
+//     });
+// }
+
+// Update key to table by get data from database
+const btn_table = document.querySelectorAll('.table-col');
+ref.on('value', snapshot => {
+    for (let i = 0; i < btn_table.length; i++) {
+        let btn = btn_table[i].getAttribute('id');
+        let symbol = snapshot.child(`${params.id}`).child('table').child(btn).val();
+        if (symbol) {
+            document.getElementById(btn).querySelector('.display-4').innerHTML = symbol;
+        } else {
+            document.getElementById(btn).querySelector('.display-4').innerHTML = '';
+        }
+    }
+});
+
