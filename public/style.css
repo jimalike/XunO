@@ -18,11 +18,10 @@ body {
 }
 .main-bt:hover{
     transition: 0.3s;
-    transform: scale(1.05);
+    transform: scaleX(1.05);
     background-color: #c0d3ff;
     border: 0px;
     color: black;
-    border: 5px solid white;
     border-radius: 3px;
 }
 
@@ -54,4 +53,12 @@ hr{
 
 .wait{
     display: none;
+}
+
+input{
+    transition: all 0.3s;
+}
+
+input:focus{
+    transform: scaleX(1.05);
 }

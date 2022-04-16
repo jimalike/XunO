@@ -45,34 +45,33 @@ btnLogout.addEventListener('click', () => {
 })
 
 //Login
-const loginForm = document.querySelector('#login-form');
-loginForm.addEventListener('submit', loginUser);
+const loginbtn = document.querySelector('#btnLogin');
+loginbtn.addEventListener('click', loginUser);
 
 const loginFeedback = document.querySelector('#feedback-msg-login');
-const loginModal = new bootstrap.Modal(document.querySelector('#modal-login'));
+// const loginModal = new bootstrap.Modal(document.querySelector('#modal-login'));
 
 function loginUser(event) {
     event.preventDefault();
-    const email = loginForm['input-email-login'].value;
-    const password = loginForm['input-password-login'].value;
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    console.log("hello!");
+    const email = document.querySelector('#input-email-login');
+    console.log(email);
+    const password = document.querySelector('#input-password-login');
+    console.log(password);
+    firebase.auth().signInWithEmailAndPassword(email.value, password.value)
         .then(() => {
             loginFeedback.style = `color:green`;
             loginFeedback.innerHTML = `Login successed.`;
             setTimeout(function() {
-                loginModal.hide();
-                console.log(loginModal)
-            }, 1000);
-            setTimeout(function() {
-                loginForm.reset();
-                loginFeedback.innerHTML = ``
-            }, 1000);
-            window.location.href = `jimmy.html`;
+                window.location.href = `jimmy.html`;
+            }, 1500);
         })
         .catch((error) => {
-            loginFeedback.style = `color:crimson`;
+            loginFeedback.style = `color:crimson; display:block`;
             loginFeedback.innerHTML = `${error.message}`;
-            loginForm.reset();
+            // loginForm.reset();
+            email.value = "";
+            password.value = "";
         });
 }
 
