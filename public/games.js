@@ -278,50 +278,58 @@ function randomCard() {
         });
         document.querySelector('#randombtn').disabled = true;
     }
+    // สุ่มได้ข้ามเทิร์น
+    if (display == "skip") {
+        ref.once('value', snapshot => {
+            turn = snapshot.child(`${params.id}`).child('turn').val();
+            if (turn == 'O') {
+                ref.child(`${params.id}`).update({
+                    turn: `X`,
+                });
+            }
+            if (turn == 'X') {
+                ref.child(`${params.id}`).update({
+                    turn: `O`,
+                });
+            }
+        });
+        // document.querySelector("#cardEffect").innerHTML = "";
+    }
+    // สุ่มได้ลบ 1 ตัว
+    if (display == "delete") {
+        ref.once('value', snapshot => {
+            turn = snapshot.child(`${params.id}`).child('turn').val();
+            // เช็คว่าแต่ละแถวมีตัวที่จะให้ลบไหม ถ้าไม่มีให้เปลี่ยนเทิร์น
+            for (let i = 0; i < btn_table.length; i++) {
+                let btn = btn_table[i].getAttribute('id');
+                let symbol = snapshot.child(`${params.id}`).child('table').child(btn).val();
+                // เทิร์น ของ X ลบ O ออก
+                if (symbol == "O" && turn == 'X') {
+                    ref.child(`${params.id}`).update({
+                        state: `delete`,
+                        turn: `X`,
+                    });
+                }
+                else if (symbol == "X" && turn == 'O') {
+                    ref.child(`${params.id}`).update({
+                        state: `delete`,
+                        turn: `O`,
+                    });
+                }
+                // else if (symbol != "O" && turn == 'X') {
+                //     ref.child(`${params.id}`).update({
+                //         turn: `O`,
+                //     });
+                //     document.querySelector('#randombtn').disabled = false;
+                // }
+                // else if (symbol != "X" && turn == 'O') {
+                //     ref.child(`${params.id}`).update({
+                //         turn: `X`,
+                //     });
+                //     document.querySelector('#randombtn').disabled = false;
+                // }
+            }
+        });
+        document.querySelector('#randombtn').disabled = true;
+    }
 }
-function draw() {
-    console.log("goodbye");
-}
-    // ref.once('value', snapshot => {
-        // turn = snapshot.child(`${params.id}`).child('turn').val();
-        // btnID = btn.getAttribute('id');
-        // Playerx = snapshot.child(`${params.id}`).child('PlayerX').val();
-        // Playero = snapshot.child(`${params.id}`).child('PlayerO').val();
-        // countx = 0;
-        // counto = 0;
-        //check player X Y to put X, Y inner button (Update Realtime by using database) ลง 2 ที
-        // if (turn == 'X' && btn.querySelector('.display-4').innerHTML == '' && count != 2) {
-        //     btn.querySelector('.display-4').innerHTML = 'X';
-        //     ref.child(`${params.id}`).update({
-        //         turn: `X`,
-        //     });
-        //     ref.child(`${params.id}`).child('table').update({
-        //         [btnID]: `X`,
-        //     })
-        //     countx += 1;
-        // }
-        // else {
-        //     ref.child(`${params.id}`).update({
-        //         turn: `O`,
-        //     });
-        //     countx = 0;
-        // }
-        // if (turn == 'O' && btn.querySelector('.display-4').innerHTML == '' && count != 2) {
-        //     btn.querySelector('.display-4').innerHTML = 'X';
-        //     ref.child(`${params.id}`).update({
-        //         turn: `O`,
-        //     });
-        //     ref.child(`${params.id}`).child('table').update({
-        //         [btnID]: `O`,
-        //     })
-        //     counto += 1;
-        // }
-        // else {
-        //     ref.child(`${params.id}`).update({
-        //         turn: `X`,
-        //     });
-        //     countx = 0;
-        // }
-//     });
-// }
-
