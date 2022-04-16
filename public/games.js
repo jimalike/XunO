@@ -1,5 +1,6 @@
 const ref = firebase.database().ref("Game");
 const creategame = document.querySelector(".creategame");
+const display_turnstate = document.querySelector('.display-turnstate');
 
 // ฟังค์ชันสร้าง เลขห้อง
 function makeid(length) {
@@ -141,6 +142,7 @@ function buttonXO(btn) {
         state = snapshot.child(`${params.id}`).child('state').val();
         //check player X Y to put X, Y inner button (Update Realtime by using database)
         if (turn == 'X' && btn.querySelector('.display-4').innerHTML == '' && state == 'normal') {
+            display_turnstate.innerHTML = 'Turn Player O';
             btn.querySelector('.display-4').innerHTML = 'X';
             ref.child(`${params.id}`).update({
                 turn: `O`,
@@ -150,6 +152,7 @@ function buttonXO(btn) {
             })
         }
         if (turn == 'O' && btn.querySelector('.display-4').innerHTML == '' && state == 'normal') {
+            display_turnstate.innerHTML = 'Turn Player X';
             btn.querySelector('.display-4').innerHTML = 'O';
             ref.child(`${params.id}`).update({
                 turn: `X`,
@@ -264,15 +267,13 @@ ref.on('value', snapshot => {
 
 // randoming cards สุ่มการ์ด
 
-const cardtype = ["draw2", "skip","delete"];
+const cardtype = ["draw2", "skip" ,"delete"];
 function randomCard() {
     var display = cardtype[Math.floor(Math.random() * 3)];
     document.querySelector("#cardEffect").innerHTML = display;
     console.log(display);
     // สุ่มได้ ลง 2 ที
     if (display == "draw2") {
-        // btn_table.forEach(item => item.removeAttribute("onclick"));
-        // btn_table.forEach(item => item.onclick = draw())
         ref.child(`${params.id}`).update({
             state: `draw2`,
         });
@@ -299,37 +300,45 @@ function randomCard() {
     if (display == "delete") {
         ref.once('value', snapshot => {
             turn = snapshot.child(`${params.id}`).child('turn').val();
-            // เช็คว่าแต่ละแถวมีตัวที่จะให้ลบไหม ถ้าไม่มีให้เปลี่ยนเทิร์น
+            countxtodel = 0;
+            countotodel = 0;
+            // เช็คว่าแต่ละแถวมีตัวที่จะให้ลบไหม
             for (let i = 0; i < btn_table.length; i++) {
                 let btn = btn_table[i].getAttribute('id');
                 let symbol = snapshot.child(`${params.id}`).child('table').child(btn).val();
-                // เทิร์น ของ X ลบ O ออก
-                if (symbol == "O" && turn == 'X') {
-                    ref.child(`${params.id}`).update({
-                        state: `delete`,
-                        turn: `X`,
-                    });
+                if (symbol == "X") {
+                    countxtodel += 1;
                 }
-                else if (symbol == "X" && turn == 'O') {
-                    ref.child(`${params.id}`).update({
-                        state: `delete`,
-                        turn: `O`,
-                    });
+                if (symbol == "O") {
+                    countotodel += 1;
                 }
-                // else if (symbol != "O" && turn == 'X') {
-                //     ref.child(`${params.id}`).update({
-                //         turn: `O`,
-                //     });
-                //     document.querySelector('#randombtn').disabled = false;
-                // }
-                // else if (symbol != "X" && turn == 'O') {
-                //     ref.child(`${params.id}`).update({
-                //         turn: `X`,
-                //     });
-                //     document.querySelector('#randombtn').disabled = false;
-                // }
+            }
+            if (turn == "X" && countotodel == 0){
+                ref.child(`${params.id}`).update({
+                    turn: `O`,
+                    state: 'normal',
+                });
+                document.querySelector('#randombtn').disabled = false;
+            }
+            else if (turn == "O" && countxtodel == 0){
+                ref.child(`${params.id}`).update({
+                    turn: `X`,
+                    state: 'normal',
+                });
+                document.querySelector('#randombtn').disabled = false;
+            }
+            else if (turn == "X" && countotodel != 0){
+                ref.child(`${params.id}`).update({
+                    state: 'delete',
+                });
+                document.querySelector('#randombtn').disabled = true;
+            }
+            else if (turn == "O" && countxtodel != 0){
+                ref.child(`${params.id}`).update({
+                    state: 'delete',
+                });
+                document.querySelector('#randombtn').disabled = true;
             }
         });
-        document.querySelector('#randombtn').disabled = true;
     }
 }
