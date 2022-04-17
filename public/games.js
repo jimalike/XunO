@@ -129,7 +129,7 @@ countx = 0;
 counto = 0;
 //  ฟังก์ชันใส่ x o บน ตาราง
 function buttonXO(btn) {
-    // checkWin();
+    checkWin();
     var gameState = '';
     let turn = `turn`;
     const currentUser = firebase.auth().currentUser;
@@ -363,4 +363,97 @@ function randomCard() {
             }
         });
     }
+}
+
+function checkWin(){
+    var datalist = [];
+    ref.once('value', snapshot => {
+        turn = snapshot.child(`${params.id}`).child('turn').val();
+        // เช็คว่าแต่ละแถวมีตัวที่จะให้ลบไหม
+        for (let i = 0; i < btn_table.length; i++) {
+            let btn = btn_table[i].getAttribute('id');
+            let symbol = snapshot.child(`${params.id}`).child('table').child(btn).val();
+            datalist[i] = symbol;
+        }
+        // check X //
+        if (datalist[0] == "X" && datalist[1] == "X" && datalist[2] == "X" && datalist[3] == "X" && datalist[4] == "X") {
+            console.log("X win");
+        }
+        else if (datalist[5] == "X" && datalist[6] == "X" && datalist[7] == "X" && datalist[8] == "X" && datalist[9] == "X"){
+            console.log("X win");
+        }
+        else if (datalist[10] == "X" && datalist[11] == "X" && datalist[12] == "X" && datalist[13] == "X" && datalist[14] == "X"){
+            console.log("X win");
+        }
+        else if (datalist[15] == "X" && datalist[16] == "X" && datalist[17] == "X" && datalist[18] == "X" && datalist[19] == "X"){
+            console.log("X win");
+        }
+        else if (datalist[20] == "X" && datalist[21] == "X" && datalist[22] == "X" && datalist[23] == "X" && datalist[24] == "X"){
+            console.log("X win");
+        }
+        else if (datalist[20] == "X" && datalist[21] == "X" && datalist[22] == "X" && datalist[23] == "X" && datalist[24] == "X"){
+            console.log("X win");
+        }
+        else if (datalist[0] == "X" && datalist[5] == "X" && datalist[10] == "X" && datalist[15] == "X" && datalist[20] == "X"){
+            console.log("X win");
+        }
+        else if (datalist[1] == "X" && datalist[6] == "X" && datalist[11] == "X" && datalist[16] == "X" && datalist[21] == "X"){
+            console.log("X win");
+        }
+        else if (datalist[2] == "X" && datalist[7] == "X" && datalist[12] == "X" && datalist[17] == "X" && datalist[22] == "X"){
+            console.log("X win");
+        }
+        else if (datalist[3] == "X" && datalist[8] == "X" && datalist[13] == "X" && datalist[18] == "X" && datalist[23] == "X"){
+            console.log("X win");
+        }
+        else if (datalist[4] == "X" && datalist[9] == "X" && datalist[14] == "X" && datalist[19] == "X" && datalist[24] == "X"){
+            console.log("X win");
+        }
+        else if (datalist[0] == "X" && datalist[6] == "X" && datalist[12] == "X" && datalist[18] == "X" && datalist[24] == "X"){
+            console.log("X win");
+        }
+        else if (datalist[4] == "X" && datalist[8] == "X" && datalist[12] == "X" && datalist[16] == "X" && datalist[20] == "X"){
+            console.log("X win");
+        }
+        // check O //
+        else if (datalist[0] == "O" && datalist[1] == "O" && datalist[2] == "O" && datalist[3] == "O" && datalist[4] == "O") {
+            console.log("O win");
+        }
+        else if (datalist[5] == "O" && datalist[6] == "O" && datalist[7] == "O" && datalist[8] == "O" && datalist[9] == "O"){
+            console.log("O win");
+        }
+        else if (datalist[10] == "O" && datalist[11] == "O" && datalist[12] == "O" && datalist[13] == "O" && datalist[14] == "O"){
+            console.log("O win");
+        }
+        else if (datalist[15] == "O" && datalist[16] == "O" && datalist[17] == "O" && datalist[18] == "O" && datalist[19] == "O"){
+            console.log("O win");
+        }
+        else if (datalist[20] == "O" && datalist[21] == "O" && datalist[22] == "O" && datalist[23] == "O" && datalist[24] == "O"){
+            console.log("O win");
+        }
+        else if (datalist[20] == "O" && datalist[21] == "O" && datalist[22] == "O" && datalist[23] == "O" && datalist[24] == "O"){
+            console.log("O win");
+        }
+        else if (datalist[0] == "O" && datalist[5] == "O" && datalist[10] == "O" && datalist[15] == "O" && datalist[20] == "O"){
+            console.log("O win");
+        }
+        else if (datalist[1] == "O" && datalist[6] == "O" && datalist[11] == "O" && datalist[16] == "O" && datalist[21] == "O"){
+            console.log("O win");
+        }
+        else if (datalist[2] == "O" && datalist[7] == "O" && datalist[12] == "O" && datalist[17] == "O" && datalist[22] == "O"){
+            console.log("O win");
+        }
+        else if (datalist[3] == "O" && datalist[8] == "O" && datalist[13] == "O" && datalist[18] == "O" && datalist[23] == "O"){
+            console.log("O win");
+        }
+        else if (datalist[4] == "O" && datalist[9] == "O" && datalist[14] == "O" && datalist[19] == "O" && datalist[24] == "O"){
+            console.log("O win");
+        }
+        else if (datalist[0] == "O" && datalist[6] == "O" && datalist[12] == "O" && datalist[18] == "O" && datalist[24] == "O"){
+            console.log("O win");
+        }
+        else if (datalist[4] == "O" && datalist[8] == "O" && datalist[12] == "O" && datalist[16] == "O" && datalist[20] == "O"){
+            console.log("O win");
+        }
+    });
 }
