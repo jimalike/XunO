@@ -322,6 +322,7 @@ function randomCard() {
     // สุ่มได้ข้ามเทิร์น
     if (display == "skip") {
         ref.once('value', snapshot => {
+            document.querySelector('#randombtn').disabled = false;
             turn = snapshot.child(`${params.id}`).child('turn').val();
             if (turn == 'O') {
                 // display_turnstate.innerHTML = 'You draw skip now its turn X';
