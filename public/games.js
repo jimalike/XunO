@@ -163,6 +163,7 @@ function buttonXO(btn) {
         }
         // ลง 2 ที เป็นตาของ X
         if (turn == 'X' && btn.querySelector('.display-4').innerHTML == '' && state == 'draw2') {
+            display_turnstate.innerHTML = 'Turn Player X put your marks 1 time';
             if (countx != 1) {
                 countx += plus;
                 btn.querySelector('.display-4').innerHTML = 'X';
@@ -175,6 +176,7 @@ function buttonXO(btn) {
                 console.log(countx);
             }
             else if (countx == 1) {
+                display_turnstate.innerHTML = 'Turn Player O';
                 ref.child(`${params.id}`).child('table').update({
                     [btnID]: `X`,
                 })
@@ -189,7 +191,9 @@ function buttonXO(btn) {
         }
         // ลง 2 ที เป็นตาของ O
         if (turn == 'O' && btn.querySelector('.display-4').innerHTML == '' && state == 'draw2') {
+            display_turnstate.innerHTML = 'Turn Player X delete 1 Player O';
             if (counto != 1) {
+                display_turnstate.innerHTML = 'Turn Player O put your marks 1 time';
                 counto += plus;
                 btn.querySelector('.display-4').innerHTML = 'X';
                 ref.child(`${params.id}`).update({
@@ -201,6 +205,7 @@ function buttonXO(btn) {
                 console.log(counto);
             }
             else if (counto == 1) {
+                display_turnstate.innerHTML = 'Turn Player X';
                 btn.querySelector('.display-4').innerHTML = 'X';
                 ref.child(`${params.id}`).child('table').update({
                     [btnID]: `O`,
@@ -217,6 +222,7 @@ function buttonXO(btn) {
         }
         // delete x turn
         if (turn == 'X' && btn.querySelector('.display-4').innerHTML == 'O' && state == 'delete') {
+            display_turnstate.innerHTML = 'Turn Player O';
             btn.querySelector('.display-4').innerHTML = '';
             ref.child(`${params.id}`).update({
                 turn: `O`,
@@ -230,6 +236,7 @@ function buttonXO(btn) {
         }
         // delete O turn
         if (turn == 'O' && btn.querySelector('.display-4').innerHTML == 'X' && state == 'delete') {
+            display_turnstate.innerHTML = 'Turn Player X';
             btn.querySelector('.display-4').innerHTML = '';
             ref.child(`${params.id}`).update({
                 turn: `X`,
@@ -278,17 +285,28 @@ function randomCard() {
             state: `draw2`,
         });
         document.querySelector('#randombtn').disabled = true;
+        ref.once('value', snapshot => {
+            turn = snapshot.child(`${params.id}`).child('turn').val();
+        if(turn == 'X'){
+            display_turnstate.innerHTML = 'Turn Player X put your marks 2 times';
+        }
+        if (turn == 'O'){
+            display_turnstate.innerHTML = 'Turn Player O put your marks 2 times';
+        }
+    });
     }
     // สุ่มได้ข้ามเทิร์น
     if (display == "skip") {
         ref.once('value', snapshot => {
             turn = snapshot.child(`${params.id}`).child('turn').val();
             if (turn == 'O') {
+                display_turnstate.innerHTML = 'You draw skip now its turn X';
                 ref.child(`${params.id}`).update({
                     turn: `X`,
                 });
             }
             if (turn == 'X') {
+                display_turnstate.innerHTML = 'You draw skip now its turn O';
                 ref.child(`${params.id}`).update({
                     turn: `O`,
                 });
@@ -314,6 +332,7 @@ function randomCard() {
                 }
             }
             if (turn == "X" && countotodel == 0){
+                display_turnstate.innerHTML = 'You not have anything to delete O now it turn O';
                 ref.child(`${params.id}`).update({
                     turn: `O`,
                     state: 'normal',
@@ -321,6 +340,7 @@ function randomCard() {
                 document.querySelector('#randombtn').disabled = false;
             }
             else if (turn == "O" && countxtodel == 0){
+                display_turnstate.innerHTML = 'You not have anything to delete X now it turn X';
                 ref.child(`${params.id}`).update({
                     turn: `X`,
                     state: 'normal',
@@ -328,12 +348,14 @@ function randomCard() {
                 document.querySelector('#randombtn').disabled = false;
             }
             else if (turn == "X" && countotodel != 0){
+                display_turnstate.innerHTML = 'Turn Player X delete 1 player O mark';
                 ref.child(`${params.id}`).update({
                     state: 'delete',
                 });
                 document.querySelector('#randombtn').disabled = true;
             }
             else if (turn == "O" && countxtodel != 0){
+                display_turnstate.innerHTML = 'Turn Player O delete 1 player X mark';
                 ref.child(`${params.id}`).update({
                     state: 'delete',
                 });
