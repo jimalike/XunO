@@ -62,3 +62,8 @@ input{
 input:focus{
     transform: scaleX(1.05);
 }
+@media all and (max-width: 560px) {
+    .flex-xs-column{
+        flex-direction: column!important;
+    }
+}

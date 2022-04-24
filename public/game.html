@@ -53,7 +53,12 @@
         .wideness{
             width: 600px ;
         }
-
+        
+        @media all and (min-width:0px) {
+            .flex-xs-column{
+                flex-direction: column!important;
+            }
+        }
         @media all and (min-width:500px) and (max-width:1000px){
             .tallness{
                 height: 80px ;
