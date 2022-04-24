@@ -421,14 +421,24 @@ function checkWin() {
     const endgame = document.querySelector('#endgame');
     ref.once('value', snapshot => {
         turn = snapshot.child(`${params.id}`).child('turn').val();
-        // เช็คว่าแต่ละแถวมีตัวที่จะให้ลบไหม
+        symbolcount = 0;
         for (let i = 0; i < btn_table.length; i++) {
             let btn = btn_table[i].getAttribute('id');
             let symbol = snapshot.child(`${params.id}`).child('table').child(btn).val();
             datalist[i] = symbol;
+            if(symbol == "X" || symbol == "O"){
+                symbolcount += 1;
+            }
+        }
+        if (symbolcount == 25){
+            ref.child(`${params.id}`).update({
+                display_turnstate: 'Tie',
+                winner: "Tie",
+            });
+            endgame.style.display = 'flex';
         }
         // check X //
-        if (datalist[0] == "X" && datalist[1] == "X" && datalist[2] == "X" && datalist[3] == "X" && datalist[4] == "X") {
+        else if (datalist[0] == "X" && datalist[1] == "X" && datalist[2] == "X" && datalist[3] == "X" && datalist[4] == "X") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player X win',
                 winner: "X",
