@@ -418,6 +418,7 @@ function randomCard() {
 function checkWin() {
     // Checkdisplay();
     var datalist = [];
+    const endgame = document.querySelector('#endgame');
     ref.once('value', snapshot => {
         turn = snapshot.child(`${params.id}`).child('turn').val();
         // เช็คว่าแต่ละแถวมีตัวที่จะให้ลบไหม
@@ -432,78 +433,91 @@ function checkWin() {
                 display_turnstate: 'Player X win',
                 winner: "X",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[5] == "X" && datalist[6] == "X" && datalist[7] == "X" && datalist[8] == "X" && datalist[9] == "X") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player X win',
                 winner: "X",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[10] == "X" && datalist[11] == "X" && datalist[12] == "X" && datalist[13] == "X" && datalist[14] == "X") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player X win',
                 winner: "X",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[15] == "X" && datalist[16] == "X" && datalist[17] == "X" && datalist[18] == "X" && datalist[19] == "X") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player X win',
                 winner: "X",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[20] == "X" && datalist[21] == "X" && datalist[22] == "X" && datalist[23] == "X" && datalist[24] == "X") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player X win',
                 winner: "X",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[20] == "X" && datalist[21] == "X" && datalist[22] == "X" && datalist[23] == "X" && datalist[24] == "X") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player X win',
                 winner: "X",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[0] == "X" && datalist[5] == "X" && datalist[10] == "X" && datalist[15] == "X" && datalist[20] == "X") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player X win',
                 winner: "X",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[1] == "X" && datalist[6] == "X" && datalist[11] == "X" && datalist[16] == "X" && datalist[21] == "X") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player X win',
                 winner: "X",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[2] == "X" && datalist[7] == "X" && datalist[12] == "X" && datalist[17] == "X" && datalist[22] == "X") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player X win',
                 winner: "X",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[3] == "X" && datalist[8] == "X" && datalist[13] == "X" && datalist[18] == "X" && datalist[23] == "X") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player X win',
                 winner: "X",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[4] == "X" && datalist[9] == "X" && datalist[14] == "X" && datalist[19] == "X" && datalist[24] == "X") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player X win',
                 winner: "X",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[0] == "X" && datalist[6] == "X" && datalist[12] == "X" && datalist[18] == "X" && datalist[24] == "X") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player X win',
                 winner: "X",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[4] == "X" && datalist[8] == "X" && datalist[12] == "X" && datalist[16] == "X" && datalist[20] == "X") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player X win',
                 winner: "X",
             });
+            endgame.style.display = 'flex';
         }
         // check O //
         else if (datalist[0] == "O" && datalist[1] == "O" && datalist[2] == "O" && datalist[3] == "O" && datalist[4] == "O") {
@@ -511,78 +525,91 @@ function checkWin() {
                 display_turnstate: 'Player O win',
                 winner: "O",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[5] == "O" && datalist[6] == "O" && datalist[7] == "O" && datalist[8] == "O" && datalist[9] == "O") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player O win',
                 winner: "O",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[10] == "O" && datalist[11] == "O" && datalist[12] == "O" && datalist[13] == "O" && datalist[14] == "O") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player O win',
                 winner: "O",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[15] == "O" && datalist[16] == "O" && datalist[17] == "O" && datalist[18] == "O" && datalist[19] == "O") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player O win',
                 winner: "O",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[20] == "O" && datalist[21] == "O" && datalist[22] == "O" && datalist[23] == "O" && datalist[24] == "O") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player O win',
                 winner: "O",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[20] == "O" && datalist[21] == "O" && datalist[22] == "O" && datalist[23] == "O" && datalist[24] == "O") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player O win',
                 winner: "O",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[0] == "O" && datalist[5] == "O" && datalist[10] == "O" && datalist[15] == "O" && datalist[20] == "O") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player O win',
                 winner: "O",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[1] == "O" && datalist[6] == "O" && datalist[11] == "O" && datalist[16] == "O" && datalist[21] == "O") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player O win',
                 winner: "O",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[2] == "O" && datalist[7] == "O" && datalist[12] == "O" && datalist[17] == "O" && datalist[22] == "O") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player O win',
                 winner: "O",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[3] == "O" && datalist[8] == "O" && datalist[13] == "O" && datalist[18] == "O" && datalist[23] == "O") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player O win',
                 winner: "O",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[4] == "O" && datalist[9] == "O" && datalist[14] == "O" && datalist[19] == "O" && datalist[24] == "O") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player O win',
                 winner: "O",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[0] == "O" && datalist[6] == "O" && datalist[12] == "O" && datalist[18] == "O" && datalist[24] == "O") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player O win',
                 winner: "O",
             });
+            endgame.style.display = 'flex';
         }
         else if (datalist[4] == "O" && datalist[8] == "O" && datalist[12] == "O" && datalist[16] == "O" && datalist[20] == "O") {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player O win',
                 winner: "O",
             });
+            endgame.style.display = 'flex';
         }
     });
 }

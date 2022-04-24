@@ -86,7 +86,7 @@
             <div id="gamePanel"
                 style="display: flex; align-items: center; justify-content: center; align-self: center; margin-top: 5%;">
                 <div class="align-items-center" style="width: 25vw;">
-                    <div class="row" style="height: 5vw;" >
+                    <div class="row" style="height: 5vw;">
                         <div class="col border justify-content-center align-items-center table-col d-flex border-3 select "
                             id="row-1-col-1" onclick="buttonXO(this)">
                             <p class="text-center display-4" style="color: white;">
@@ -248,10 +248,14 @@
                     </div>
                 </div>
             </div>
+            <div id="endgame" style="display: none; justify-content: center; align-items: center;  position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%); width: 500px; height: 500px; background-color: #1D1E22; ">
+                <a onclick="Cancel()" class="btn btn-outline-primary main-bt btn-lg">
+                    Back to menu
+                </a>
+            </div>
             <div class="cardbox wait"
                 style="margin-top: 30px; width: fit-content; height: fit-content; padding: 20px; border: 5px solid white; border-radius: 10px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center;">
-                <div 
-                style="background-color: #cc6ed8; 
+                <div style="background-color: #cc6ed8; 
                 width: 30vw; 
                 height: 50px; 
                 color: white; 
@@ -262,8 +266,7 @@
                 justify-content: center;">
                     <p id="cardEffect"></p>
                 </div>
-                <button class="main-bt" onclick="randomCard()" id="randombtn" 
-                style="border: 5px solid #ffffff; 
+                <button class="main-bt" onclick="randomCard()" id="randombtn" style="border: 5px solid #ffffff; 
                 border-radius: 10px; 
                 background-color: transparent; 
                 width: fit-content;
