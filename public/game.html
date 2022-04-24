@@ -40,10 +40,70 @@
             margin: 0;
             padding: 0;
         }
+
+        @media all and (max-width: 500px) {
+            .wideness{
+                width: 250px;
+            }
+            .tallness{
+                height: 50px;
+            }
+        }
     </style>
 </head>
 
+<<<<<<< Updated upstream
 <body style="background-color: #1D1E22;">
+=======
+<script>
+
+</script>
+
+<body style="position: relative;">
+    <div class="container d-flex flex-column justify-content-center">
+        <div id="waitpanel" style="border: 5px solid black; 
+    width: 70vw; 
+    height: 50vh; 
+    border-radius: 10px;  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #ffffff;">
+            <h1>Waiting for player 2 ...</h1 style="background-color">
+            <hr>
+            <h1 id="roomcodeDisplay"> </h1>
+            <!-- <button onclick="copytext('#copycode')">Copy text</button> -->
+            <!-- <button class="main-bt" style="width: 200px;">Cancel</button> -->
+            <a onclick="Cancel()" class="btn btn-outline-primary main-bt btn-lg">
+                Cancel
+            </a>
+        </div>
+
+        <!-- style="position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%);" -->
+        <!-- style="display: flex; align-items: center; justify-content: center; height: 100%;" -->
+        <div class="justify-content-center align-items-center pt-5 wait">
+            <h2 class="text-RGB display-turnstate">Player <span></span> turn.</h2>
+        </div>
+        <div class="justify-content-center align-items-center wait flex-column" style="height: fit-content;">
+            <div id="gamePanel"
+                style="display: flex; align-items: center; justify-content: center; align-self: center; margin-top: 5%;">
+                <div class="align-items-center wideness" style="width: 600px;">
+                    <div class="row tallness" style="height: 120px">
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select "
+                            id="row-1-col-1" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select "
+                            id="row-1-col-2" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+>>>>>>> Stashed changes
 
     <!-- style="position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%);" -->
     <!-- style="display: flex; align-items: center; justify-content: center; height: 100%;" -->
@@ -59,6 +119,7 @@
                             ⭕
                         </p>
                     </div>
+<<<<<<< Updated upstream
                     <div class="col border justify-content-center align-items-center table-col d-flex border-3" >
                         <p>
                             ❌
@@ -78,6 +139,135 @@
                         <p>
                             ❌
                         </p>
+=======
+                    <div class="row tallness" style="height: 120px;">
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-2-col-1" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-2-col-2" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-2-col-3" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-2-col-4" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-2-col-5" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row tallness" style="height: 120px;">
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-3-col-1" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-3-col-2" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-3-col-3" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-3-col-4" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-3-col-5" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row tallness" style="height: 120px;">
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-4-col-1" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-4-col-2" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-4-col-3" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-4-col-4" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-4-col-5" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row tallness" style="height: 120px;">
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-5-col-1" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-5-col-2" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-5-col-3" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-5-col-4" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+                        <div class="col border justify-content-center align-items-center table-col d-flex border-3 select"
+                            id="row-5-col-5" onclick="buttonXO(this)">
+                            <p class="text-center display-4" style="color: white;">
+
+                            </p>
+                        </div>
+>>>>>>> Stashed changes
                     </div>
                 </div>
                 <div class="row" style="height: 10vh;">
