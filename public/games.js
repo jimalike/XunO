@@ -120,13 +120,13 @@ ref.on('value', snapshot => {
         wait.forEach(item => item.style.display = 'flex');
         waitpanel.forEach(item => item.style.display = 'none');
         // console.log("robologin")
-        if(!winner){
+        if (!winner) {
             cardbox.style.display = 'flex';
         }
-        else{
+        else {
             cardbox.style.display = 'none';
         }
-        
+
     }
 });
 
@@ -242,7 +242,6 @@ function buttonXO(btn) {
             }
             // delete x turn
             if (turn == 'X' && btn.querySelector('.display-4').innerHTML == 'O' && state == 'delete') {
-                // display_turnstate.innerHTML = 'Turn Player O';
                 btn.querySelector('.display-4').innerHTML = '';
                 ref.child(`${params.id}`).update({
                     turn: `O`,
@@ -253,12 +252,12 @@ function buttonXO(btn) {
                 ref.child(`${params.id}`).child('table').update({
                     [btnID]: ``,
                 })
+                checkWin();
                 // document.querySelector("#cardEffect").innerHTML = "";
                 document.querySelector('#randombtn').disabled = false;
             }
             // delete O turn
             if (turn == 'O' && btn.querySelector('.display-4').innerHTML == 'X' && state == 'delete') {
-                // display_turnstate.innerHTML = 'Turn Player X';
                 btn.querySelector('.display-4').innerHTML = '';
                 ref.child(`${params.id}`).update({
                     turn: `X`,
@@ -268,6 +267,69 @@ function buttonXO(btn) {
                 });
                 ref.child(`${params.id}`).child('table').update({
                     [btnID]: ``,
+                })
+                checkWin();
+                // document.querySelector("#cardEffect").innerHTML = "";
+                document.querySelector('#randombtn').disabled = false;
+            }
+            // ลงทับ เป็นตาของ X
+            if (turn == 'X' && btn.querySelector('.display-4').innerHTML == 'O' && state == 'overlap') {
+                btn.querySelector('.display-4').innerHTML = 'X';
+                ref.child(`${params.id}`).update({
+                    turn: `O`,
+                    state: 'normal',
+                    display_turnstate: 'Turn Player O',
+                    card_text: "",
+                });
+                ref.child(`${params.id}`).child('table').update({
+                    [btnID]: `X`,
+                })
+                // document.querySelector("#cardEffect").innerHTML = "";
+                document.querySelector('#randombtn').disabled = false;
+            }
+
+            // ลงทับ เป็นตาของ  O
+            if (turn == 'O' && btn.querySelector('.display-4').innerHTML == 'X' && state == 'overlap') {
+                btn.querySelector('.display-4').innerHTML = 'O';
+                ref.child(`${params.id}`).update({
+                    turn: `X`,
+                    state: 'normal',
+                    display_turnstate: 'Turn Player X',
+                    card_text: "",
+                });
+                ref.child(`${params.id}`).child('table').update({
+                    [btnID]: `O`,
+                })
+                // document.querySelector("#cardEffect").innerHTML = "";
+                document.querySelector('#randombtn').disabled = false;
+            }
+             // บังคับลง เป็นตาของ X
+             if (turn == 'X' && btn.querySelector('.display-4').innerHTML == '' && state == 'force') {
+                btn.querySelector('.display-4').innerHTML = 'O';
+                ref.child(`${params.id}`).update({
+                    turn: `O`,
+                    state: 'normal',
+                    display_turnstate: 'Turn Player O',
+                    card_text: "",
+                });
+                ref.child(`${params.id}`).child('table').update({
+                    [btnID]: `O`,
+                })
+                // document.querySelector("#cardEffect").innerHTML = "";
+                document.querySelector('#randombtn').disabled = false;
+            }
+
+            // บังคับลง เป็นตาของ  O
+            if (turn == 'O' && btn.querySelector('.display-4').innerHTML == '' && state == 'force') {
+                btn.querySelector('.display-4').innerHTML = 'X';
+                ref.child(`${params.id}`).update({
+                    turn: `X`,
+                    state: 'normal',
+                    display_turnstate: 'Turn Player X',
+                    card_text: "",
+                });
+                ref.child(`${params.id}`).child('table').update({
+                    [btnID]: `X`,
                 })
                 // document.querySelector("#cardEffect").innerHTML = "";
                 document.querySelector('#randombtn').disabled = false;
@@ -302,13 +364,12 @@ ref.on('value', snapshot => {
 
 
 // randoming cards สุ่มการ์ด
-
-const cardtype = ["draw2", "skip", "delete"];
+const cardtype = ["draw2", "skip", "delete","overlap","force"];
 function randomCard() {
     ref.once('value', snapshot => {
         turn = snapshot.child(`${params.id}`).child('turn').val();
         var winner = snapshot.child(`${params.id}`).child('winner').val();
-        var display = cardtype[Math.floor(Math.random() * 3)];
+        var display = cardtype[Math.floor(Math.random() * 5)];
         ref.child(`${params.id}`).update({
             card_text: display,
         });
@@ -376,7 +437,7 @@ function randomCard() {
                     ref.child(`${params.id}`).update({
                         turn: `O`,
                         state: 'normal',
-                        display_turnstate: 'You not have anything to delete O now it turn O',
+                        display_turnstate: 'You can not overlap now it turn O',
 
                     });
                     document.querySelector('#randombtn').disabled = false;
@@ -386,7 +447,7 @@ function randomCard() {
                     ref.child(`${params.id}`).update({
                         turn: `X`,
                         state: 'normal',
-                        display_turnstate: 'You not have anything to delete X now it turn X',
+                        display_turnstate: 'You can not overlap now it turn X',
                     });
                     document.querySelector('#randombtn').disabled = false;
                 }
@@ -394,7 +455,7 @@ function randomCard() {
                     // display_turnstate.innerHTML = 'Turn Player X delete 1 player O mark';
                     ref.child(`${params.id}`).update({
                         state: 'delete',
-                        display_turnstate: 'Turn Player X delete 1 player O mark',
+                        display_turnstate: 'Turn Player X overlap 1 player O mark',
                     });
                     document.querySelector('#randombtn').disabled = true;
                 }
@@ -402,13 +463,82 @@ function randomCard() {
                     // display_turnstate.innerHTML = 'Turn Player O delete 1 player X mark';
                     ref.child(`${params.id}`).update({
                         state: 'delete',
-                        display_turnstate: 'Turn Player O delete 1 player X mark',
+                        display_turnstate: 'Turn Player O overlap 1 player X mark',
                     });
                     document.querySelector('#randombtn').disabled = true;
                 }
             }
+            // ลงทับ 1 ตัว
+            if (display == "overlap") {
+                turn = snapshot.child(`${params.id}`).child('turn').val();
+                countxtoswap = 0;
+                countotoswap = 0;
+                // เช็คว่าแต่ละแถวมีตัวที่จะให้ทับไหม
+                for (let i = 0; i < btn_table.length; i++) {
+                    let btn = btn_table[i].getAttribute('id');
+                    let symbol = snapshot.child(`${params.id}`).child('table').child(btn).val();
+                    if (symbol == "X") {
+                        countxtoswap += 1;
+                    }
+                    if (symbol == "O") {
+                        countotoswap += 1;
+                    }
+                }
+                if (turn == "X" && countotoswap == 0) {
+                    ref.child(`${params.id}`).update({
+                        turn: `O`,
+                        state: 'normal',
+                        display_turnstate: 'You can not overlap now it turn O',
+
+                    });
+                    document.querySelector('#randombtn').disabled = false;
+                }
+                else if (turn == "O" && countxtoswap == 0) {
+                    ref.child(`${params.id}`).update({
+                        turn: `X`,
+                        state: 'normal',
+                        display_turnstate: 'You can not overlap now it turn X',
+                    });
+                    document.querySelector('#randombtn').disabled = false;
+                }
+                else if (turn == "X" && countotoswap != 0) {
+                    ref.child(`${params.id}`).update({
+                        state: 'overlap',
+                        display_turnstate: 'Turn Player X choose O to overlap',
+                    });
+                    document.querySelector('#randombtn').disabled = true;
+                }
+                else if (turn == "O" && countxtoswap != 0) {
+                    ref.child(`${params.id}`).update({
+                        state: 'overlap',
+                        display_turnstate: 'Turn Player O choose X to overlap',
+                    });
+                    document.querySelector('#randombtn').disabled = true;
+                }
+            }
+             // สุ่มได้ บังคับลงอีกฝ่าย 1 ที
+             if (display == "force") {
+                ref.child(`${params.id}`).update({
+                    state: `force`,
+                });
+                document.querySelector('#randombtn').disabled = true;
+                if (turn == 'X') {
+                    // display_turnstate.innerHTML = 'Turn Player X put your marks 2 times';
+                    ref.child(`${params.id}`).update({
+                        turn: `X`,
+                        display_turnstate: 'Turn Player X You force to mark O 1 time',
+                    });
+                }
+                if (turn == 'O') {
+                    // display_turnstate.innerHTML = 'Turn Player O put your marks 2 times';
+                    ref.child(`${params.id}`).update({
+                        turn: `O`,
+                        display_turnstate: 'Turn Player O You force to mark X 1 time',
+                    });
+                }
+            }
         }
-        else{
+        else {
             document.querySelector('#randombtn').disabled = true;
         }
     });
@@ -426,11 +556,11 @@ function checkWin() {
             let btn = btn_table[i].getAttribute('id');
             let symbol = snapshot.child(`${params.id}`).child('table').child(btn).val();
             datalist[i] = symbol;
-            if(symbol == "X" || symbol == "O"){
+            if (symbol == "X" || symbol == "O") {
                 symbolcount += 1;
             }
         }
-        if (symbolcount == 25){
+        if (symbolcount == 25) {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Tie',
                 winner: "Tie",
