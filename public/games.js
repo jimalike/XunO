@@ -284,6 +284,7 @@ function buttonXO(btn) {
                 ref.child(`${params.id}`).child('table').update({
                     [btnID]: `X`,
                 })
+                checkWin();
                 // document.querySelector("#cardEffect").innerHTML = "";
                 document.querySelector('#randombtn').disabled = false;
             }
@@ -300,6 +301,7 @@ function buttonXO(btn) {
                 ref.child(`${params.id}`).child('table').update({
                     [btnID]: `O`,
                 })
+                checkWin();
                 // document.querySelector("#cardEffect").innerHTML = "";
                 document.querySelector('#randombtn').disabled = false;
             }
@@ -315,6 +317,7 @@ function buttonXO(btn) {
                 ref.child(`${params.id}`).child('table').update({
                     [btnID]: `O`,
                 })
+                checkWin();
                 // document.querySelector("#cardEffect").innerHTML = "";
                 document.querySelector('#randombtn').disabled = false;
             }
@@ -331,6 +334,7 @@ function buttonXO(btn) {
                 ref.child(`${params.id}`).child('table').update({
                     [btnID]: `X`,
                 })
+                checkWin();
                 // document.querySelector("#cardEffect").innerHTML = "";
                 document.querySelector('#randombtn').disabled = false;
             }
@@ -437,7 +441,7 @@ function randomCard() {
                     ref.child(`${params.id}`).update({
                         turn: `O`,
                         state: 'normal',
-                        display_turnstate: 'You can not overlap now it turn O',
+                        display_turnstate: 'You can not delete now it turn O',
 
                     });
                     document.querySelector('#randombtn').disabled = false;
@@ -447,7 +451,7 @@ function randomCard() {
                     ref.child(`${params.id}`).update({
                         turn: `X`,
                         state: 'normal',
-                        display_turnstate: 'You can not overlap now it turn X',
+                        display_turnstate: 'You can not delete now it turn X',
                     });
                     document.querySelector('#randombtn').disabled = false;
                 }
@@ -455,7 +459,7 @@ function randomCard() {
                     // display_turnstate.innerHTML = 'Turn Player X delete 1 player O mark';
                     ref.child(`${params.id}`).update({
                         state: 'delete',
-                        display_turnstate: 'Turn Player X overlap 1 player O mark',
+                        display_turnstate: 'Turn Player X delete 1 player O mark',
                     });
                     document.querySelector('#randombtn').disabled = true;
                 }
@@ -463,7 +467,7 @@ function randomCard() {
                     // display_turnstate.innerHTML = 'Turn Player O delete 1 player X mark';
                     ref.child(`${params.id}`).update({
                         state: 'delete',
-                        display_turnstate: 'Turn Player O overlap 1 player X mark',
+                        display_turnstate: 'Turn Player O delete 1 player X mark',
                     });
                     document.querySelector('#randombtn').disabled = true;
                 }
