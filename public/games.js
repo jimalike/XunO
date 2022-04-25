@@ -553,7 +553,7 @@ function checkWin() {
     // Checkdisplay();
     var datalist = [];
     const endgame = document.querySelector('#endgame');
-    ref.once('value', snapshot => {
+    ref.on('value', snapshot => {
         turn = snapshot.child(`${params.id}`).child('turn').val();
         symbolcount = 0;
         for (let i = 0; i < btn_table.length; i++) {
