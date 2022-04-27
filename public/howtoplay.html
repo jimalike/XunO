@@ -21,6 +21,25 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+    <style>
+        @media all and (min-width:500px) and (max-width:1000px) {
+            .rule_font {
+                font-size: 24px;
+            }
+        }
+
+        @media all and (min-width:320px) and (max-width:500px) {
+            .rule_font {
+                font-size: 16px;
+            }
+        }
+
+        @media all and (min-width:250px) and (max-width:320px) {
+            .rule_font {
+                font-size: 10px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -80,7 +99,7 @@
 
     <div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
         <div class="row gap-3">
-            <div class="col-12">
+            <div class="col-12 rule_font">
                 <div class="card d-flex text-center"
                     style="width: 50vw; max-width: 1000px; background-color: transparent; color: white;">
                     <h1 class="card-header" style="background-color: #ff4747;">How to play XunO</h1>

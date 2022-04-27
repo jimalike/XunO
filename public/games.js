@@ -368,8 +368,8 @@ ref.on('value', snapshot => {
 
 
 // randoming cards สุ่มการ์ด
-const cardtype = ["skip"];
-// const cardtype = ["draw2", "skip", "delete","overlap","force"];
+// const cardtype = ["skip"];
+const cardtype = ["draw2", "skip", "delete","overlap","force"];
 function randomCard() {
     ref.once('value', snapshot => {
         turn = snapshot.child(`${params.id}`).child('turn').val();
@@ -552,6 +552,7 @@ function randomCard() {
 
 function checkWin() {
     // Checkdisplay();
+    const currentUser = firebase.auth().currentUser;
     var datalist = [];
     const endgame = document.querySelector('#endgame');
     ref.on('value', snapshot => {
