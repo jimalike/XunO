@@ -1,3 +1,4 @@
+const ref = firebase.database().ref("Game");
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit', createUser);
 
@@ -12,13 +13,14 @@ function createUser(event) {
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(() => {
-            signupFeedback.style = `color:green`;
-            signupFeedback.innerHTML = ` Signup completed`;
-            setTimeout(function() { signupModal.hide(); }, 1000);
-            setTimeout(function() {
-                signupForm.reset();
-                signupFeedback.innerHTML = ``
-            }, 1000);
+            const currentUser = firebase.auth().currentUser;
+            var user = firebase.auth().currentUser;
+            var ref = firebase.database().ref()
+            var user_data = {
+                email : currentUser.email,
+                win : '0',
+            }
+            ref.child('user/' + user.uid).set(user_data)
             window.location.href = `jimmy.html`;
         })
         .catch((error) => {
