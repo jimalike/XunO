@@ -374,7 +374,7 @@ function randomCard() {
     ref.once('value', snapshot => {
         turn = snapshot.child(`${params.id}`).child('turn').val();
         var winner = snapshot.child(`${params.id}`).child('winner').val();
-        var display = cardtype[Math.floor(Math.random() * 1)];
+        var display = cardtype[Math.floor(Math.random() * 5)];
         ref.child(`${params.id}`).update({
             card_text: display,
         });
