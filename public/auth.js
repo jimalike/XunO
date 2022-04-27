@@ -1,4 +1,4 @@
-const ref = firebase.database().ref("Game");
+const reffer = firebase.database().ref("Game");
 const signupForm = document.querySelector('#signup-form');
 signupForm.addEventListener('submit', createUser);
 
@@ -15,12 +15,11 @@ function createUser(event) {
         .then(() => {
             const currentUser = firebase.auth().currentUser;
             var user = firebase.auth().currentUser;
-            var ref = firebase.database().ref()
             var user_data = {
                 email : currentUser.email,
                 win : '0',
             }
-            ref.child('user/' + user.uid).set(user_data)
+            reffer.child('user/' + user.uid).set(user_data)
             window.location.href = `jimmy.html`;
         })
         .catch((error) => {

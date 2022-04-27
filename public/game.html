@@ -63,7 +63,7 @@
             }
         }
 
-        @media all and (min-width:250px) and (max-width:500px){
+        @media all and (min-width:250px) and (max-width:320px){
             .tallness{
                 height: 50px ;
             }
@@ -71,7 +71,19 @@
                 width: 250px ;
             }
         }
-
+        @media all and (min-width:320px) and (max-width:500px){
+            .tallness{
+                height: 60px ;
+            }
+            .wideness{
+                width: 300px ;
+            }
+        }
+        .finish{
+            width: 500px;
+            height: 500px;
+            
+        }
         
     </style>
 </head>
@@ -276,8 +288,8 @@
                     </div>
                 </div>
             </div>
-            <div id="endgame"
-                style="display: none; justify-content: center; align-items: center;  position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%); width: 500px; height: 500px; background-color: #1D1E22; ">
+            <div id="endgame"  class="finish"
+                style="display: none; justify-content: center; align-items: center;  position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%); background-color: #1D1E22; ">
                 <a onclick="Cancel()" class="btn btn-outline-primary main-bt btn-lg">
                     Back to menu
                 </a>
