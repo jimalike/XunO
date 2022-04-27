@@ -13,11 +13,12 @@ function createUser(event) {
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(() => {
-            const currentUser = firebase.auth().currentUser;
             var user = firebase.auth().currentUser;
             var user_data = {
-                email : currentUser.email,
-                win : '0',
+                email : user.email,
+                win : 0,
+                allmatch : 0,
+                winrate : 0,
             }
             reffer.child('user/' + user.uid).set(user_data)
             window.location.href = `jimmy.html`;
