@@ -5,20 +5,22 @@ signupForm.addEventListener('submit', createUser);
 const signupFeedback = document.querySelector('#feedback-msg-signup');
 const signupModal = new bootstrap.Modal(document.querySelector('#modal-signup'));
 const modal_bd = document.querySelectorAll('.modal-backdrop');
-//Create a password-based account
+//Create a password-based account   
 function createUser(event) {
     event.preventDefault();
     const email = signupForm['input-email-signup'].value;
     const password = signupForm['input-password-signup'].value;
+    const username = signupForm['input-username-signup'].value
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(() => {
             var user = firebase.auth().currentUser;
             var user_data = {
-                email : user.email,
-                win : 0,
-                allmatch : 0,
-                winrate : 0,
+                username: `${username}`,
+                email: user.email,
+                win: 0,
+                allmatch: 0,
+                winrate: 0,
             }
             reffer.child('user/' + user.uid).set(user_data)
             window.location.href = `jimmy.html`;
@@ -45,40 +47,39 @@ btnLogout.addEventListener('click', () => {
     firebase.auth().signOut();
     console.log('Logout Complete.');
 })
+if(document.title == 'Login'){
+    //Login
+    const loginbtn = document.querySelector('#btnLogin');
+    loginbtn.addEventListener('click', loginUser);
 
-//Login
-const loginbtn = document.querySelector('#btnLogin');
-loginbtn.addEventListener('click', loginUser);
+    const loginFeedback = document.querySelector('#feedback-msg-login');
+    // const loginModal = new bootstrap.Modal(document.querySelector('#modal-login'));
 
-const loginFeedback = document.querySelector('#feedback-msg-login');
-// const loginModal = new bootstrap.Modal(document.querySelector('#modal-login'));
+    function loginUser(event) {
+        event.preventDefault();
+        console.log("hello!");
+        const email = document.querySelector('#input-email-login');
+        console.log(email);
+        const password = document.querySelector('#input-password-login');
+        console.log(password);
+        firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+            .then(() => {
+                loginFeedback.style = `color:green`;
+                loginFeedback.innerHTML = `Login successed.`;
+                setTimeout(function () {
+                    window.location.href = `jimmy.html`;
+                }, 1500);
+            })
+            .catch((error) => {
+                loginFeedback.style = `color:crimson; display:block`;
+                loginFeedback.innerHTML = `${error.message}`;
+                // loginForm.reset();
+                email.value = "";
+                password.value = "";
+            });
+    }
 
-function loginUser(event) {
-    event.preventDefault();
-    console.log("hello!");
-    const email = document.querySelector('#input-email-login');
-    console.log(email);
-    const password = document.querySelector('#input-password-login');
-    console.log(password);
-    firebase.auth().signInWithEmailAndPassword(email.value, password.value)
-        .then(() => {
-            loginFeedback.style = `color:green`;
-            loginFeedback.innerHTML = `Login successed.`;
-            setTimeout(function() {
-                window.location.href = `jimmy.html`;
-            }, 1500);
-        })
-        .catch((error) => {
-            loginFeedback.style = `color:crimson; display:block`;
-            loginFeedback.innerHTML = `${error.message}`;
-            // loginForm.reset();
-            email.value = "";
-            password.value = "";
-        });
 }
-
-
-
 const btnCancel = document.querySelectorAll('.btn-cancel').forEach(btn => {
     btn.addEventListener('click', () => {
         signupForm.reset();
@@ -87,6 +88,7 @@ const btnCancel = document.querySelectorAll('.btn-cancel').forEach(btn => {
         loginFeedback.innerHTML = ``
     })
 })
+
 
 firebase.auth().onAuthStateChanged((user) => {
     setupUI(user);
@@ -112,7 +114,12 @@ const loginItems = document.querySelectorAll('.logged-in');
 
 function setupUI(user) {
     if (user) {
-        document.querySelector('#user-profile-name').innerHTML = user.email;
+        reffer.once('value', snapshot => {
+            const username = firebase.auth().currentUser;
+            uname = snapshot.child(`user`).child(username.uid).child('username').val();
+            document.querySelector('#user-profile-uname').innerHTML = ` User : ${uname}  `;
+        });
+        document.querySelector('#user-profile-name').innerHTML = ` Email : ${user.email}`;
         loginItems.forEach(item => item.style.display = 'inline-block');
         logoutItems.forEach(item => item.style.display = 'none');
         // btnItems.forEach(item => item.style.display = 'none');
