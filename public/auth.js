@@ -19,6 +19,7 @@ function createUser(event) {
                 username: `${username}`,
                 email: user.email,
                 win: 0,
+                loss: 0,
                 allmatch: 0,
                 winrate: 0,
             }

@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,27 +20,26 @@
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <title>User Profile</title>
 </head>
+
 <body>
     <div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
         <div class="row">
-            <div class="col-12 d-flex gap-3 justify-content-center align-items-center flex-column" style="border-radius: 10px; background-color: aqua; padding: 60px;">
+            <div class="col-12 d-flex gap-3 justify-content-center align-items-center flex-column"
+                style="border-radius: 10px; background-color: aqua; padding: 60px;">
                 <h1 id="winrate">Your current winrate is: </h1>
                 <div id="piechart"></div>
-
-                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                <script type="text/javascript">
-                    // Load google charts
-                    google.charts.load('current', {'packages':['corechart']});
-                    google.charts.setOnLoadCallback(drawChart);
-
-                    // Draw the chart and set the chart values
+                <script>
                     function drawChart() {
                         var data = google.visualization.arrayToDataTable([
-                        ['Task', 'Hours per Day'],
-                        ['Win', 8],
-                        ['Loss', 2],
+                            ['Task', 'Hours per Day'],
+                            ['Win', 8],
+                            ['Loss', 2],
                         ]);
 
                         // Display the chart inside the <div> element with id="piechart"
@@ -50,5 +50,26 @@
             </div>
         </div>
     </div>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAe9i02kUPQRLRgGzHR2OhAhc2vUy1gWjo",
+            authDomain: "web-design-b4245.firebaseapp.com",
+            databaseURL: "https://web-design-b4245-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "web-design-b4245",
+            storageBucket: "web-design-b4245.appspot.com",
+            messagingSenderId: "137915157498",
+            appId: "1:137915157498:web:28f127d60bae5796697243",
+            measurementId: "G-G0EBL4FCR3"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        // Load google charts
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+    </script>
+    <script type="text/javascript" src="games.js"></script>
 </body>
+
 </html>
