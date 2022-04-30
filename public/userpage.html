@@ -25,9 +25,28 @@
     <div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
         <div class="row">
             <div class="col-12 d-flex gap-3 justify-content-center align-items-center flex-column" style="border-radius: 10px; background-color: aqua; padding: 60px;">
-                <h4 id="allmatch">You have played X games.</h4>
-                <h4 id="win">You have won X games.</h4>
                 <h1 id="winrate">Your current winrate is: </h1>
+                <div id="piechart"></div>
+
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <script type="text/javascript">
+                    // Load google charts
+                    google.charts.load('current', {'packages':['corechart']});
+                    google.charts.setOnLoadCallback(drawChart);
+
+                    // Draw the chart and set the chart values
+                    function drawChart() {
+                        var data = google.visualization.arrayToDataTable([
+                        ['Task', 'Hours per Day'],
+                        ['Win', 8],
+                        ['Loss', 2],
+                        ]);
+
+                        // Display the chart inside the <div> element with id="piechart"
+                        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                        chart.draw(data);
+                    }
+                </script>
             </div>
         </div>
     </div>
