@@ -46,45 +46,77 @@
             padding: 0;
         }
 
-        .tallness{
-            height: 120px ;
+        .tallness {
+            height: 120px;
+        }
+
+        .wideness {
+            width: 600px;
+        }
+
+        .finish {
+            top: 40%;
         }
         
-        .wideness{
-            width: 600px ;
+        .button_size{
+            font-size: 50px;
         }
-        
-        @media all and (min-width:500px) and (max-width:1000px){
-            .tallness{
-                height: 80px ;
+
+        @media all and (min-width:575px) and (max-width:1000px) {
+            .tallness {
+                height: 80px;
             }
-            .wideness{
-                width: 400px ;
+
+            .wideness {
+                width: 400px;
+            }
+
+            .finish {
+                top: 30%;
+            }
+
+            .button_size{
+            font-size: 30px;
+        }
+        }
+
+        @media all and (min-width:2px) and (max-width:320px) {
+            .tallness {
+                height: 50px;
+            }
+
+            .wideness {
+                width: 250px;
+            }
+
+            .finish {
+                top: 20%;
+                left:30%;
+            }
+
+            .button_size{
+                font-size: 10px;
             }
         }
 
-        @media all and (min-width:2px) and (max-width:320px){
-            .tallness{
-                height: 50px ;
+        @media all and (min-width:320px) and (max-width:575px) {
+            .tallness {
+                height: 60px;
             }
-            .wideness{
-                width: 250px ;
+
+            .wideness {
+                width: 300px;
+            }
+
+            .button_size{
+                font-size: 20px;
+            }
+
+            .finish {
+                top: 20%;
+                left:30%;
             }
         }
-        @media all and (min-width:320px) and (max-width:500px){
-            .tallness{
-                height: 60px ;
-            }
-            .wideness{
-                width: 300px ;
-            }
-        }
-        .finish{
-            width: 500px;
-            height: 500px;
-            
-        }
-        
     </style>
 </head>
 
@@ -122,7 +154,7 @@
         <div class="justify-content-center align-items-center pt-5 wait">
             <h2 class="text-RGB display-turnstate">Player <span></span> turn.</h2>
         </div>
-        <div class="justify-content-center align-items-center wait flex-column" style="height: fit-content;">
+        <div class="justify-content-center align-items-center wait flex-column" style="height: fit-content;" id="jimjimjim">
             <div id="gamePanel"
                 style="display: flex; align-items: center; justify-content: center; align-self: center; margin-top: 5%;">
                 <div class="align-items-center wideness">
@@ -288,12 +320,15 @@
                     </div>
                 </div>
             </div>
-            <div id="endgame"  class="finish"
-                style="display: none; justify-content: center; align-items: center;  position: absolute; top:50%; left: 50%; transform: translate(-50%,-50%); background-color: #1D1E22; ">
-                <a onclick="Cancel()" class="btn btn-outline-primary main-bt btn-lg">
-                    Back to menu
-                </a>
-            </div>
+
+
+
+            <!-- <div id="endgame" class="finish"
+                style="display: none; justify-content: center; align-items: center;  position: absolute; left: 50%; transform: translate(-50%,-50%); background-color: #1D1E22; ">
+
+            </div> -->
+
+
             <div class="cardbox wait"
                 style="margin-top: 30px; width: fit-content; height: fit-content; padding: 20px; border: 5px solid white; border-radius: 10px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center;">
                 <div style="background-color: #cc6ed8; 
@@ -315,7 +350,17 @@
                 color: white;">Draw</button>
             </div>
         </div>
-
+        <div class="modal finish" id="endgame" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" style="padding:0%;">
+                        <a onclick="Cancel()" class="btn btn-outline-primary main-bt btn-lg button_size">
+                            Back to menu
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>

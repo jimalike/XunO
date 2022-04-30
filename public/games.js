@@ -179,6 +179,8 @@ function join() {
                 }
                 cardbox.style.display = 'none';
                 endgame.style.display = 'flex';
+                var jimjim = document.querySelector("#jimjimjim");
+                jimjim.style.filter = "blur(8px)";
             }
         }
     });
