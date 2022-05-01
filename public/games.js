@@ -18,7 +18,7 @@ const card_text = document.querySelector('#cardEffect');
 //     console.log(winrate);
 //     console.log(allmatch);
 // });
-if (document.title == 'User Profile') {
+if (document.title == 'Main menu') {
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {

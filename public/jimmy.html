@@ -86,7 +86,7 @@
                         How to play
                     </a>
                     <!-- Mac edited -->
-
+                    <div id="piechart"></div>
                 </div>
             </div>
 
@@ -159,6 +159,11 @@
             measurementId: "G-G0EBL4FCR3"
         };
         firebase.initializeApp(firebaseConfig);
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        // Load google charts
+        google.charts.load('current', { 'packages': ['corechart'] });
     </script>
     <script type="text/javascript" src="auth.js"></script>
     <script type="text/javascript" src="games.js"></script>
