@@ -76,8 +76,8 @@
             }
 
             .button_size{
-            font-size: 30px;
-        }
+                font-size: 30px;
+            }
         }
 
         @media all and (min-width:2px) and (max-width:320px) {
@@ -151,6 +151,7 @@
         <!-- style="display: flex; align-items: center; justify-content: center; height: 100%;" -->
         <div class="justify-content-center align-items-center pt-5 wait">
             <h2 class="text-RGB display-turnstate">Player <span></span> turn.</h2>
+            <button type="button" style="position: absolute;" class="btn-danger" id="surrenderBtn">Surrender</button>
         </div>
         <div class="justify-content-center align-items-center wait flex-column" style="height: fit-content;" id="jimjimjim">
             <div id="gamePanel"
@@ -360,7 +361,7 @@
             </div>
         </div>
     </div>
-
+    
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyAe9i02kUPQRLRgGzHR2OhAhc2vUy1gWjo",
