@@ -77,16 +77,15 @@
                                 style="border: solid 3px white; border-radius: 6px; background-color: none;">Cancel</button>
                         </div>
                     </div>
-                    <a href="userpage.html" class="btn btn-outline-primary main-bt btn-lg">
-                        Match history
+                    <a onclick="chartToggle()" class="btn btn-outline-primary main-bt btn-lg">
+                        Your current winrate...
                     </a>
-
+                    <div id="piechart" class="col-12 d-flex justify-content-center align-items-center gone"></div>
                     <!-- Mac edited -->
-                    <a href="howtoplay.html" class="btn btn-outline-primary main-bt btn-lg">
+                    <a href="howtoplay.html" class="btn btn-outline-primary main-bt btn-lg" style="margin-bottom: 50px;">
                         How to play
                     </a>
                     <!-- Mac edited -->
-
                 </div>
             </div>
 
@@ -159,6 +158,11 @@
             measurementId: "G-G0EBL4FCR3"
         };
         firebase.initializeApp(firebaseConfig);
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        // Load google charts
+        google.charts.load('current', { 'packages': ['corechart'] });
     </script>
     <script type="text/javascript" src="auth.js"></script>
     <script type="text/javascript" src="games.js"></script>

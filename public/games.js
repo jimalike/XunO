@@ -18,7 +18,7 @@ const card_text = document.querySelector('#cardEffect');
 //     console.log(winrate);
 //     console.log(allmatch);
 // });
-if (document.title == 'User Profile') {
+if (document.title == 'Main menu') {
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
@@ -39,10 +39,15 @@ if (document.title == 'User Profile') {
                 ['Win', win],
                 ['Loss', loss],
             ]);
-
+            var options = {
+                backgroundColor: 'transparent',
+                legend: 'none',
+                pieSliceText: 'label',
+                'width': 400,
+                'height': 400};
             // Display the chart inside the <div> element with id="piechart"
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-            chart.draw(data);
+            chart.draw(data, options);
         });
     }
 }
@@ -122,6 +127,13 @@ function joinToggle() {
     var joinDiv = document.getElementById('joinDiv');
     joinDiv.classList.toggle("gone");
 }
+
+function chartToggle() {
+    var chartDiv = document.getElementById('piechart');
+    chartDiv.classList.toggle("gone");
+}
+
+
 
 // เช็ตห้องว่าตรงไหม main menu
 const roominput = document.querySelector('#roominput');
@@ -525,7 +537,7 @@ function randomCard() {
                     // display_turnstate.innerHTML = 'You draw skip now its turn X';
                     ref.child(`${params.id}`).update({
                         turn: `X`,
-                        display_turnstate: 'You draw skip now its turn X ' + `(${userX})`,
+                        display_turnstate: "You draw skip. Now it's turn X " + `(${userX})`,
                     });
                     document.querySelector('#randombtn').disabled = false;
                 }
@@ -533,7 +545,7 @@ function randomCard() {
                     // display_turnstate.innerHTML = 'You draw skip now its turn O';
                     ref.child(`${params.id}`).update({
                         turn: `O`,
-                        display_turnstate: 'You draw skip now its turn O ' + `(${userO})`,
+                        display_turnstate: "You draw skip. Now it's turn O " + `(${userO})`,
                     });
                     document.querySelector('#randombtn').disabled = false;
                 }
@@ -560,7 +572,7 @@ function randomCard() {
                     ref.child(`${params.id}`).update({
                         turn: `O`,
                         state: 'normal',
-                        display_turnstate: 'You can not delete now it turn O ' + `(${userO})`,
+                        display_turnstate: "You can not delete. Now it's turn O " + `(${userO})`,
 
                     });
                     document.querySelector('#randombtn').disabled = false;
@@ -570,7 +582,7 @@ function randomCard() {
                     ref.child(`${params.id}`).update({
                         turn: `X`,
                         state: 'normal',
-                        display_turnstate: 'You can not delete now it turn X ' + `(${userX})`,
+                        display_turnstate: "You can not delete. Now it's turn X " + `(${userX})`,
                     });
                     document.querySelector('#randombtn').disabled = false;
                 }
@@ -611,7 +623,7 @@ function randomCard() {
                     ref.child(`${params.id}`).update({
                         turn: `O`,
                         state: 'normal',
-                        display_turnstate: 'You can not overlap now it turn O ' + `(${userO})`,
+                        display_turnstate: "You can not overlap. Now it's turn O " + `(${userO})`,
 
                     });
                     document.querySelector('#randombtn').disabled = false;
@@ -620,7 +632,7 @@ function randomCard() {
                     ref.child(`${params.id}`).update({
                         turn: `X`,
                         state: 'normal',
-                        display_turnstate: 'You can not overlap now it turn X' + `(${userX})`,
+                        display_turnstate: "You can not overlap. Now it's turn X " + `(${userX})`,
                     });
                     document.querySelector('#randombtn').disabled = false;
                 }
