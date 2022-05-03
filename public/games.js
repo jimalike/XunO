@@ -484,7 +484,7 @@ ref.on('value', snapshot => {
 
 
 // randoming cards สุ่มการ์ด
-const cardtype = ["draw2", "skip", "delete", "overlap", "force"];
+const cardtype = ["double", "skip", "delete", "overlap", "force"];
 function randomCard() {
     ref.once('value', snapshot => {
         turn = snapshot.child(`${params.id}`).child('turn').val();
@@ -511,7 +511,7 @@ function randomCard() {
          // Playero == currentUser &&
         if (!winner) {
             // สุ่มได้ ลง 2 ที
-            if (display == "draw2") {
+            if (display == "double") {
                 ref.child(`${params.id}`).update({
                     state: `draw2`,
                 });
