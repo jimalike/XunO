@@ -256,8 +256,10 @@ function buttonXO(btn) {
         userO = snapshot.child(`${params.id}`).child('PlayerOusername').val();
         //check player X Y to put X, Y inner button (Update Realtime by using database)
         if (!winner) {
+            console.log(Playerx);
             // Playerx == currentUser &&
-            if (turn == 'X' && btn.querySelector('.display-4').innerHTML == '' && state == 'normal') {
+            // Playero == currentUser &&
+            if (Playerx == currentUser.email && turn == 'X' && btn.querySelector('.display-4').innerHTML == '' && state == 'normal') {
                 btn.querySelector('.display-4').innerHTML = 'X';
                 ref.child(`${params.id}`).update({
                     turn: `O`,
@@ -268,7 +270,7 @@ function buttonXO(btn) {
                 })
                 checkWin();
             }
-            if (turn == 'O' && btn.querySelector('.display-4').innerHTML == '' && state == 'normal') {
+            if (Playero == currentUser.email && turn == 'O' && btn.querySelector('.display-4').innerHTML == '' && state == 'normal') {
                 btn.querySelector('.display-4').innerHTML = 'O';
                 ref.child(`${params.id}`).update({
                     turn: `X`,
@@ -280,7 +282,7 @@ function buttonXO(btn) {
                 checkWin();
             }
             // ลง 2 ที เป็นตาของ X
-            if (turn == 'X' && btn.querySelector('.display-4').innerHTML == '' && state == 'draw2') {
+            if (Playerx == currentUser.email && turn == 'X' && btn.querySelector('.display-4').innerHTML == '' && state == 'draw2') {
                 // display_turnstate.innerHTML = 'Turn Player X put your marks 1 time';
                 if (countx != 1) {
                     countx += plus;
@@ -313,7 +315,7 @@ function buttonXO(btn) {
                 }
             }
             // ลง 2 ที เป็นตาของ O
-            if (turn == 'O' && btn.querySelector('.display-4').innerHTML == '' && state == 'draw2') {
+            if (Playero == currentUser.email && turn == 'O' && btn.querySelector('.display-4').innerHTML == '' && state == 'draw2') {
                 if (counto != 1) {
                     // display_turnstate.innerHTML = 'Turn Player O put your marks 1 time';
                     counto += plus;
@@ -348,7 +350,7 @@ function buttonXO(btn) {
                 }
             }
             // delete x turn
-            if (turn == 'X' && btn.querySelector('.display-4').innerHTML == 'O' && state == 'delete') {
+            if (Playerx == currentUser.email && turn == 'X' && btn.querySelector('.display-4').innerHTML == 'O' && state == 'delete') {
                 btn.querySelector('.display-4').innerHTML = '';
                 ref.child(`${params.id}`).update({
                     turn: `O`,
@@ -364,7 +366,7 @@ function buttonXO(btn) {
                 document.querySelector('#randombtn').disabled = false;
             }
             // delete O turn
-            if (turn == 'O' && btn.querySelector('.display-4').innerHTML == 'X' && state == 'delete') {
+            if (Playero == currentUser.email && turn == 'O' && btn.querySelector('.display-4').innerHTML == 'X' && state == 'delete') {
                 btn.querySelector('.display-4').innerHTML = '';
                 ref.child(`${params.id}`).update({
                     turn: `X`,
@@ -380,7 +382,7 @@ function buttonXO(btn) {
                 document.querySelector('#randombtn').disabled = false;
             }
             // ลงทับ เป็นตาของ X
-            if (turn == 'X' && btn.querySelector('.display-4').innerHTML == 'O' && state == 'overlap') {
+            if (Playerx == currentUser.email && turn == 'X' && btn.querySelector('.display-4').innerHTML == 'O' && state == 'overlap') {
                 btn.querySelector('.display-4').innerHTML = 'X';
                 ref.child(`${params.id}`).update({
                     turn: `O`,
@@ -397,7 +399,7 @@ function buttonXO(btn) {
             }
 
             // ลงทับ เป็นตาของ  O
-            if (turn == 'O' && btn.querySelector('.display-4').innerHTML == 'X' && state == 'overlap') {
+            if (Playero == currentUser.email && turn == 'O' && btn.querySelector('.display-4').innerHTML == 'X' && state == 'overlap') {
                 btn.querySelector('.display-4').innerHTML = 'O';
                 ref.child(`${params.id}`).update({
                     turn: `X`,
@@ -413,7 +415,7 @@ function buttonXO(btn) {
                 document.querySelector('#randombtn').disabled = false;
             }
             // บังคับลง เป็นตาของ X
-            if (turn == 'X' && btn.querySelector('.display-4').innerHTML == '' && state == 'force') {
+            if (Playerx == currentUser.email && turn == 'X' && btn.querySelector('.display-4').innerHTML == '' && state == 'force') {
                 btn.querySelector('.display-4').innerHTML = 'O';
                 ref.child(`${params.id}`).update({
                     turn: `O`,
@@ -430,7 +432,7 @@ function buttonXO(btn) {
             }
 
             // บังคับลง เป็นตาของ  O
-            if (turn == 'O' && btn.querySelector('.display-4').innerHTML == '' && state == 'force') {
+            if (Playero == currentUser.email && turn == 'O' && btn.querySelector('.display-4').innerHTML == '' && state == 'force') {
                 btn.querySelector('.display-4').innerHTML = 'X';
                 ref.child(`${params.id}`).update({
                     turn: `X`,
@@ -475,13 +477,26 @@ function randomCard() {
     ref.once('value', snapshot => {
         turn = snapshot.child(`${params.id}`).child('turn').val();
         var winner = snapshot.child(`${params.id}`).child('winner').val();
-        var display = cardtype[Math.floor(Math.random() * 5)];
         userX = snapshot.child(`${params.id}`).child('PlayerXusername').val();
         userO = snapshot.child(`${params.id}`).child('PlayerOusername').val();
-        ref.child(`${params.id}`).update({
-            card_text: display,
-        });
+        Playerx = snapshot.child(`${params.id}`).child('PlayerX').val();
+        Playero = snapshot.child(`${params.id}`).child('PlayerO').val();
+        const currentUser = firebase.auth().currentUser;
+        if (Playerx == currentUser.email && turn == 'X'){
+            var display = cardtype[Math.floor(Math.random() * 5)];
+            ref.child(`${params.id}`).update({
+                card_text: display,
+            });
+        }
+        else if (Playero == currentUser.email && turn == 'O'){
+            var display = cardtype[Math.floor(Math.random() * 5)];
+            ref.child(`${params.id}`).update({
+                card_text: display,
+            });
+        }
         console.log(display);
+        // Playerx == currentUser &&
+         // Playero == currentUser &&
         if (!winner) {
             // สุ่มได้ ลง 2 ที
             if (display == "draw2") {
@@ -489,14 +504,14 @@ function randomCard() {
                     state: `draw2`,
                 });
                 document.querySelector('#randombtn').disabled = true;
-                if (turn == 'X') {
+                if (Playerx == currentUser.email && turn == 'X') {
                     // display_turnstate.innerHTML = 'Turn Player X put your marks 2 times';
                     ref.child(`${params.id}`).update({
                         turn: `X`,
                         display_turnstate: 'Turn Player X ' + `(${userX}) ` + 'put your marks 2 times',
                     });
                 }
-                if (turn == 'O') {
+                if (Playero == currentUser.email && turn == 'O') {
                     // display_turnstate.innerHTML = 'Turn Player O put your marks 2 times';
                     ref.child(`${params.id}`).update({
                         turn: `O`,
@@ -506,20 +521,21 @@ function randomCard() {
             }
             // สุ่มได้ข้ามเทิร์น
             if (display == "skip") {
-                document.querySelector('#randombtn').disabled = false;
-                if (turn == 'O') {
+                if (Playero == currentUser.email && turn == 'O') {
                     // display_turnstate.innerHTML = 'You draw skip now its turn X';
                     ref.child(`${params.id}`).update({
                         turn: `X`,
                         display_turnstate: 'You draw skip now its turn X ' + `(${userX})`,
                     });
+                    document.querySelector('#randombtn').disabled = false;
                 }
-                else if (turn == 'X') {
+                else if (Playerx == currentUser.email && turn == 'X') {
                     // display_turnstate.innerHTML = 'You draw skip now its turn O';
                     ref.child(`${params.id}`).update({
                         turn: `O`,
                         display_turnstate: 'You draw skip now its turn O ' + `(${userO})`,
                     });
+                    document.querySelector('#randombtn').disabled = false;
                 }
                 // document.querySelector("#cardEffect").innerHTML = "";
             }
@@ -539,7 +555,7 @@ function randomCard() {
                         countotodel += 1;
                     }
                 }
-                if (turn == "X" && countotodel == 0) {
+                if (Playerx == currentUser.email && turn == "X" && countotodel == 0) {
                     // display_turnstate.innerHTML = 'You not have anything to delete O now it turn O';
                     ref.child(`${params.id}`).update({
                         turn: `O`,
@@ -549,7 +565,7 @@ function randomCard() {
                     });
                     document.querySelector('#randombtn').disabled = false;
                 }
-                else if (turn == "O" && countxtodel == 0) {
+                else if (Playero == currentUser.email && turn == "O" && countxtodel == 0) {
                     // display_turnstate.innerHTML = 'You not have anything to delete X now it turn X';
                     ref.child(`${params.id}`).update({
                         turn: `X`,
@@ -558,7 +574,7 @@ function randomCard() {
                     });
                     document.querySelector('#randombtn').disabled = false;
                 }
-                else if (turn == "X" && countotodel != 0) {
+                else if (Playerx == currentUser.email && turn == "X" && countotodel != 0) {
                     // display_turnstate.innerHTML = 'Turn Player X delete 1 player O mark';
                     ref.child(`${params.id}`).update({
                         state: 'delete',
@@ -566,7 +582,7 @@ function randomCard() {
                     });
                     document.querySelector('#randombtn').disabled = true;
                 }
-                else if (turn == "O" && countxtodel != 0) {
+                else if (Playero == currentUser.email && turn == "O" && countxtodel != 0) {
                     // display_turnstate.innerHTML = 'Turn Player O delete 1 player X mark';
                     ref.child(`${params.id}`).update({
                         state: 'delete',
@@ -591,7 +607,7 @@ function randomCard() {
                         countotoswap += 1;
                     }
                 }
-                if (turn == "X" && countotoswap == 0) {
+                if (Playerx == currentUser.email && turn == "X" && countotoswap == 0) {
                     ref.child(`${params.id}`).update({
                         turn: `O`,
                         state: 'normal',
@@ -600,7 +616,7 @@ function randomCard() {
                     });
                     document.querySelector('#randombtn').disabled = false;
                 }
-                else if (turn == "O" && countxtoswap == 0) {
+                else if (Playero == currentUser.email && turn == "O" && countxtoswap == 0) {
                     ref.child(`${params.id}`).update({
                         turn: `X`,
                         state: 'normal',
@@ -608,14 +624,14 @@ function randomCard() {
                     });
                     document.querySelector('#randombtn').disabled = false;
                 }
-                else if (turn == "X" && countotoswap != 0) {
+                else if (Playerx == currentUser.email && turn == "X" && countotoswap != 0) {
                     ref.child(`${params.id}`).update({
                         state: 'overlap',
                         display_turnstate: 'Turn Player X ' + `(${userX})` + 'choose O to overlap',
                     });
                     document.querySelector('#randombtn').disabled = true;
                 }
-                else if (turn == "O" && countxtoswap != 0) {
+                else if (Playero == currentUser.email && turn == "O" && countxtoswap != 0) {
                     ref.child(`${params.id}`).update({
                         state: 'overlap',
                         display_turnstate: 'Turn Player O ' + `(${userX})` + 'choose X to overlap',
@@ -629,14 +645,14 @@ function randomCard() {
                     state: `force`,
                 });
                 document.querySelector('#randombtn').disabled = true;
-                if (turn == 'X') {
+                if (Playerx == currentUser.email && turn == 'X') {
                     // display_turnstate.innerHTML = 'Turn Player X put your marks 2 times';
                     ref.child(`${params.id}`).update({
                         turn: `X`,
                         display_turnstate: 'Turn Player X ' + `(${userX})` + 'You force to mark O 1 time',
                     });
                 }
-                if (turn == 'O') {
+                if (Playero == currentUser.email && turn == 'O') {
                     // display_turnstate.innerHTML = 'Turn Player O put your marks 2 times';
                     ref.child(`${params.id}`).update({
                         turn: `O`,
@@ -656,6 +672,7 @@ function checkWin() {
     const currentUser = firebase.auth().currentUser;
     var datalist = [];
     ref.once('value', snapshot => {
+        const currentUser = firebase.auth().currentUser;
         userX = snapshot.child(`${params.id}`).child('PlayerXusername').val();
         userO = snapshot.child(`${params.id}`).child('PlayerOusername').val();
         turn = snapshot.child(`${params.id}`).child('turn').val();
