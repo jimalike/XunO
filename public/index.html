@@ -24,6 +24,17 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script>
+        function signupToggle(mode){
+            box = document.querySelector('#signupbox');
+            if (mode == 0){
+                box.dataset.mode = '1';
+            }
+            else if(mode == 1){
+                box.dataset.mode = '0';
+            }
+        }
+    </script>
     <link rel="stylesheet" href="style.css">
     <title>Login</title>
     <style>
@@ -48,22 +59,20 @@
                 <label style="color: #ececec; width: 50%; text-align: center;" for="#input-email-login">
                     <h4>Please enter your email and password to login.</h4>
                 </label>
-                <input type="email" id="input-email-login" placeholder="Email"
-                    style="text-align: center; width: 50%; height: 40px;">
-                <input type="password" id="input-password-login" placeholder="Password"
-                    style="text-align: center; width: 50%; height: 40px;">
-                <button type="button" id="btnLogin" style="width: 50%;"
-                    class="btn btn-lg main-bt logged-out">Login</button>
+                <input type="email" id="input-email-login" placeholder="Email" style="text-align: center; width: 50%; height: 40px;">
+                <input type="password" id="input-password-login" placeholder="Password" style="text-align: center; width: 50%; height: 40px;">
+                <button type="button" id="btnLogin" style="width: 50%;" class="btn btn-lg main-bt logged-out" onclick="loginUser()">
+                    Login
+                </button>
                 <h6 id="feedback-msg-login" style="display:none; transition: 0.1s;"></h6>
 
-                <div
-                    style="display: flex; flex-wrap: wrap; height: fit-content; align-items: center; margin-top: 40px; width: 50%; justify-content: center; text-align: center;">
+                <div style="display: flex; flex-wrap: wrap; height: fit-content; align-items: center; margin-top: 40px; width: 50%; justify-content: center; text-align: center;">
                     <label for="#btnSignup" style="margin-right: 20px;">
                         <h6 style="color: #ececec;">Don't have an account? No problem! Sign up here.</h6>
                     </label>
-                    <button type="button" id="btnSignup" class="btn btn-lg main-bt logged-out"
-                        style="width: 100px; font-size: 12px;" data-bs-toggle="modal" data-bs-target="#modal-signup">
-                        <iclass="bi bi-person-plus-fill"></i> Sign up
+                    <button type="button" id="btnSignup" class="btn btn-lg main-bt logged-out" onclick="signupToggle(0)"
+                        style="width: 100px; font-size: 12px;">
+                        Sign up
                     </button>
                 </div>
 
@@ -74,6 +83,32 @@
                 </button> -->
             </div>
         </div>
+    </div>
+
+    <div id="signupbox" data-mode="0" class="gap-2">
+        <label style="color: #ececec; width: 50%; text-align: center;" for="#input-email-login">
+            <h6>Please enter your email and password to login.</h6>
+        </label>
+
+        <input type="text" id="input-username-signup" placeholder="Username"
+            style="text-align: center; width: 50%; height: 40px;">
+
+        <input type="email" id="input-email-signup" placeholder="Email"
+            style="text-align: center; width: 50%; height: 40px;">
+
+        <input type="password" id="input-password-signup" placeholder="Password"
+            style="text-align: center; width: 50%; height: 40px;">
+
+        <div class="d-flex justify-content-center align-items-center gap-2 flex-xs-column">
+            <button type="button" onclick="createUser()" class="btn btn-lg main-bt logged-out"  style="width: 100px; font-size: 12px;">
+                        Sign up
+            </button>
+            <button class="btn btn-lg main-bt logged-out"  style="width: 100px; font-size: 12px;" onclick="signupToggle(1)">
+                Cancel
+            </button>
+        </div>
+
+        <p id="feedback-msg-signup"></p>
     </div>
 
     <!-- Log in modal -->
@@ -104,7 +139,7 @@
     </div> -->
 
     <!--Signup modal-->
-    <div class="modal" id="modal-signup" tabindex="-1">
+    <!-- <div class="modal" id="modal-signup" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -131,7 +166,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyAe9i02kUPQRLRgGzHR2OhAhc2vUy1gWjo",
