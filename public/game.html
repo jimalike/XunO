@@ -36,9 +36,8 @@
         }
 
         .text-RGB {
-            background: linear-gradient(to right, #30CFD0, #cc6ed8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            color: white;
         }
 
         p {
@@ -57,12 +56,58 @@
         .finish {
             top: 40%;
         }
-        
-        .button_size{
+
+        .button_size {
             font-size: 50px;
         }
 
+        @media all and (min-width:2px) and (max-width:320px) {
+            .text-RGB {
+                font-size: 1.5rem;
+            }
+
+            .tallness {
+                height: 50px;
+            }
+
+            .wideness {
+                width: 250px;
+            }
+
+            .finish {
+                top: 20%;
+            }
+
+            .button_size {
+                font-size: 10px;
+            }
+        }
+
+        @media all and (min-width:320px) and (max-width:575px) {
+            .text-RGB {
+                font-size: 1.5rem;
+            }
+            .tallness {
+                height: 50px;
+            }
+
+            .wideness {
+                width: 250px;
+            }
+
+            .button_size {
+                font-size: 20px;
+            }
+
+            .finish {
+                top: 20%;
+            }
+
+        }
         @media all and (min-width:575px) and (max-width:1000px) {
+            .text-RGB {
+                font-size: 2rem;
+            }
             .tallness {
                 height: 80px;
             }
@@ -75,44 +120,8 @@
                 top: 30%;
             }
 
-            .button_size{
+            .button_size {
                 font-size: 30px;
-            }
-
-        }
-
-        @media all and (min-width:2px) and (max-width:320px) {
-            .tallness {
-                height: 50px;
-            }
-
-            .wideness {
-                width: 250px;
-            }
-
-            .finish {
-                top: 20%;
-            }
-            .button_size{
-                font-size: 10px;
-            }
-        }
-
-        @media all and (min-width:320px) and (max-width:575px) {
-            .tallness {
-                height: 60px;
-            }
-
-            .wideness {
-                width: 300px;
-            }
-
-            .button_size{
-                font-size: 20px;
-            }
-
-            .finish {
-                top: 20%;
             }
 
         }
@@ -152,9 +161,11 @@
         <!-- style="display: flex; align-items: center; justify-content: center; height: 100%;" -->
         <div class="justify-content-center align-items-center pt-5 wait">
             <h2 class="text-RGB display-turnstate">Player <span></span> turn.</h2>
-            <button type="button" style="position: absolute;" class="btn-danger" id="surrenderBtn">Surrender</button>
+            <button type="button" style="position: absolute;" class="btn-danger" id="surrenderBtn"
+                onclick="surrender()">Surrender</button>
         </div>
-        <div class="justify-content-center align-items-center wait flex-column" style="height: fit-content;" id="jimjimjim">
+        <div class="justify-content-center align-items-center wait flex-column" style="height: fit-content;"
+            id="jimjimjim">
             <div id="gamePanel"
                 style="display: flex; align-items: center; justify-content: center; align-self: center; margin-top: 5%;">
                 <div class="align-items-center wideness">
@@ -362,7 +373,7 @@
             </div>
         </div>
     </div>
-    
+
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyAe9i02kUPQRLRgGzHR2OhAhc2vUy1gWjo",

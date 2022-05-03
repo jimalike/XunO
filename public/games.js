@@ -44,7 +44,8 @@ if (document.title == 'Main menu') {
                 legend: 'none',
                 pieSliceText: 'label',
                 'width': 400,
-                'height': 400};
+                'height': 400
+            };
             // Display the chart inside the <div> element with id="piechart"
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
             chart.draw(data, options);
@@ -74,6 +75,7 @@ function makeid(length) {
             turn: "X",
             state: "normal",
             display_turnstate: `Turn Player X ` + `(${usernameX})`,
+            status: "wait",
         });
     });
     return result;
@@ -139,20 +141,27 @@ function chartToggle() {
 const roominput = document.querySelector('#roominput');
 // roominput.addEventListener('button', gotoroom);
 function join() {
-    jim.forEach((roomid) => {
-        if (roominput.value === roomid) {
-            const currentUser = firebase.auth().currentUser;
-            ref.once('value', snapshot => {
+    ref.once('value', snapshot => {
+        checkroom = snapshot.child(roominput.value).child("status").val();
+        jim.forEach((roomid) => {
+            if (roominput.value === roomid && checkroom == "wait") {
+                const currentUser = firebase.auth().currentUser;
                 usernameO = snapshot.child(`user`).child(currentUser.uid).child('username').val();
-            });
-            ref.child(roominput.value).update({
-                PlayerO: currentUser.email,
-                PlayerOuid: currentUser.uid,
-                PlayerOusername: `${usernameO}`,
-            });
-            window.location.href = `game.html?id=${roomid}`;
-        }
-
+                ref.child(roominput.value).update({
+                    PlayerO: currentUser.email,
+                    PlayerOuid: currentUser.uid,
+                    PlayerOusername: `${usernameO}`,
+                    status: 'full',
+                });
+                window.location.href = `game.html?id=${roomid}`;
+            }
+            else{
+                setTimeout(function () {
+                    document.getElementById("status").innerHTML = "";
+                }, 1500);
+                document.getElementById("status").innerHTML = "Room is already full";
+            }
+        });
     });
 
 }
@@ -248,6 +257,28 @@ ref.on('value', snapshot => {
     }
 });
 
+// ยอมแพ้
+function surrender() {
+    ref.once("value",snapshot => {
+        Playerx = snapshot.child(`${params.id}`).child('PlayerX').val();
+        Playero = snapshot.child(`${params.id}`).child('PlayerO').val();
+        userX = snapshot.child(`${params.id}`).child('PlayerXusername').val();
+        userO = snapshot.child(`${params.id}`).child('PlayerOusername').val();
+        const currentUser = firebase.auth().currentUser;
+        if(currentUser.email == Playerx){
+            ref.child(`${params.id}`).update({
+                display_turnstate: 'Player O ' + `(${userO})` + ' win',
+                winner: "O",
+            });
+        }
+        else if(currentUser.email == Playero){
+            ref.child(`${params.id}`).update({
+                display_turnstate: 'Player X ' + `(${userX})` + ' win',
+                winner: "X",
+            });
+        }
+    });
+}
 
 countx = 0;
 counto = 0;
@@ -484,7 +515,7 @@ ref.on('value', snapshot => {
 
 
 // randoming cards สุ่มการ์ด
-const cardtype = ["double", "skip", "delete", "overlap", "force"];
+const cardtype = ["draw2", "skip", "delete", "overlap", "force"];
 function randomCard() {
     ref.once('value', snapshot => {
         turn = snapshot.child(`${params.id}`).child('turn').val();
@@ -494,13 +525,13 @@ function randomCard() {
         Playerx = snapshot.child(`${params.id}`).child('PlayerX').val();
         Playero = snapshot.child(`${params.id}`).child('PlayerO').val();
         const currentUser = firebase.auth().currentUser;
-        if (Playerx == currentUser.email && turn == 'X'){
+        if (Playerx == currentUser.email && turn == 'X') {
             var display = cardtype[Math.floor(Math.random() * 5)];
             ref.child(`${params.id}`).update({
                 card_text: display,
             });
         }
-        else if (Playero == currentUser.email && turn == 'O'){
+        else if (Playero == currentUser.email && turn == 'O') {
             var display = cardtype[Math.floor(Math.random() * 5)];
             ref.child(`${params.id}`).update({
                 card_text: display,
@@ -508,10 +539,10 @@ function randomCard() {
         }
         console.log(display);
         // Playerx == currentUser &&
-         // Playero == currentUser &&
+        // Playero == currentUser &&
         if (!winner) {
             // สุ่มได้ ลง 2 ที
-            if (display == "double") {
+            if (display == "draw2") {
                 ref.child(`${params.id}`).update({
                     state: `draw2`,
                 });
