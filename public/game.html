@@ -61,6 +61,12 @@
             font-size: 50px;
         }
 
+        #effectwrap{
+            display: flex;
+            justify-content: center;
+            align-items: center;        
+        }
+
         @media all and (min-width:2px) and (max-width:320px) {
             .text-RGB {
                 font-size: 1.5rem;
@@ -81,6 +87,9 @@
             .button_size {
                 font-size: 10px;
             }
+            #effectwrap{
+                flex-direction: column;     
+            } 
         }
 
         @media all and (min-width:320px) and (max-width:575px) {
@@ -102,6 +111,9 @@
             .finish {
                 top: 20%;
             }
+            #effectwrap{
+                flex-direction: column;     
+            } 
 
         }
         @media all and (min-width:575px) and (max-width:1000px) {
@@ -161,8 +173,6 @@
         <!-- style="display: flex; align-items: center; justify-content: center; height: 100%;" -->
         <div class="justify-content-center align-items-center pt-5 wait">
             <h2 class="text-RGB display-turnstate">Player <span></span> turn.</h2>
-            <button type="button" style="position: absolute;" class="btn-danger" id="surrenderBtn"
-                onclick="surrender()">Surrender</button>
         </div>
         <div class="justify-content-center align-items-center wait flex-column" style="height: fit-content;"
             id="jimjimjim">
@@ -339,28 +349,24 @@
 
             </div> -->
 
-
-            <div class="cardbox wait"
-                style="margin-top: 30px; width: fit-content; height: fit-content; padding: 20px; border: 5px solid white; border-radius: 10px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center;">
-                <div style="background-color: #cc6ed8; 
-                width: 30vw; 
-                height: 50px; 
-                color: white; 
-                border-radius: 10px;
-                margin-right: 30px;
-                display: flex;
-                align-items: center;
-                justify-content: center;">
-                    <p id="cardEffect"></p>
+            <div class="gap-3" style="margin-top: 20px;">
+                <div class="cardbox wait gap-3 d-flex justify-content-center align-items-center" id="effectwrap">
+                    <button type="button" class="btn-danger btn btn-lg" style="width: 130px;" id="surrenderBtn" onclick="surrender()">Surrender</button>
+                    <div style="background-color: #484848; 
+                    width: 40vw; 
+                    height: 50px; 
+                    color: white; 
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;">
+                        <p id="cardEffect"></p>
+                    </div>
+                    <button class="btn btn-success btn-lg" style="width: 130px;" onclick="randomCard()" id="randombtn">Draw</button>
                 </div>
-                <button class="main-bt" onclick="randomCard()" id="randombtn" style="border: 5px solid #ffffff; 
-                border-radius: 10px; 
-                background-color: transparent; 
-                width: fit-content;
-                height: 50px; 
-                color: white;">Draw</button>
             </div>
         </div>
+        
         <div class="modal finish justify-content-center" id="endgame" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
