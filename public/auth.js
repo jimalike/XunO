@@ -1,15 +1,18 @@
 const reffer = firebase.database().ref("Game");
+const signupForm = document.querySelector('#signup-form');
+signupForm.addEventListener('submit', createUser);
 
 const signupFeedback = document.querySelector('#feedback-msg-signup');
 const signupModal = new bootstrap.Modal(document.querySelector('#modal-signup'));
 const modal_bd = document.querySelectorAll('.modal-backdrop');
-//Create a password-based account
+//Create a password-based account   
+function createUser(event) {
+    event.preventDefault();
+    const email = signupForm['input-email-signup'].value;
+    const password = signupForm['input-password-signup'].value;
+    const username = signupForm['input-username-signup'].value
 
-function createUser() {
-    username = document.getElementById('input-username-signup').value;
-    email = document.getElementById('input-email-signup');
-    password = document.getElementById('input-password-signup');
-    firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
+    firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(() => {
             var user = firebase.auth().currentUser;
             var user_data = {
@@ -22,14 +25,11 @@ function createUser() {
             }
             reffer.child('user/' + user.uid).set(user_data)
             window.location.href = `jimmy.html`;
-            console.log(username+password+email);
         })
         .catch((error) => {
             signupFeedback.style = `color:crimson`;
             signupFeedback.innerHTML = ` ${error.message}`;
-            document.getElementById('input-username-signup').value = '';
-            email.value = '';
-            password.value = '';
+            signupForm.reset();
         });
 }
 
@@ -48,36 +48,39 @@ btnLogout.addEventListener('click', () => {
     firebase.auth().signOut();
     console.log('Logout Complete.');
 })
+if(document.title == 'Login'){
+    //Login
+    const loginbtn = document.querySelector('#btnLogin');
+    loginbtn.addEventListener('click', loginUser);
 
-const loginbtn = document.querySelector('#btnLogin');
-loginbtn.addEventListener('click', loginUser);
-
-//Login
-// const loginModal = new bootstrap.Modal(document.querySelector('#modal-login'));
-
-function loginUser() {
     const loginFeedback = document.querySelector('#feedback-msg-login');
-    const email = document.querySelector('#input-email-login');
-    console.log(email);
-    const password = document.querySelector('#input-password-login');
-    console.log(password);
-    firebase.auth().signInWithEmailAndPassword(email.value, password.value)
-        .then(() => {
-            loginFeedback.style = `color:green`;
-            loginFeedback.innerHTML = `Login successed.`;
-            setTimeout(function () {
-                window.location.href = `jimmy.html`;
-            }, 1500);
-        })
-        .catch((error) => {
-            loginFeedback.style = `color:crimson; display:block`;
-            loginFeedback.innerHTML = `${error.message}`;
-            // loginForm.reset();
-            email.value = "";
-            password.value = "";
-        });
-}
+    // const loginModal = new bootstrap.Modal(document.querySelector('#modal-login'));
 
+    function loginUser(event) {
+        event.preventDefault();
+        console.log("hello!");
+        const email = document.querySelector('#input-email-login');
+        console.log(email);
+        const password = document.querySelector('#input-password-login');
+        console.log(password);
+        firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+            .then(() => {
+                loginFeedback.style = `color:green`;
+                loginFeedback.innerHTML = `Login successed.`;
+                setTimeout(function () {
+                    window.location.href = `jimmy.html`;
+                }, 1500);
+            })
+            .catch((error) => {
+                loginFeedback.style = `color:crimson; display:block`;
+                loginFeedback.innerHTML = `${error.message}`;
+                // loginForm.reset();
+                email.value = "";
+                password.value = "";
+            });
+    }
+
+}
 const btnCancel = document.querySelectorAll('.btn-cancel').forEach(btn => {
     btn.addEventListener('click', () => {
         signupForm.reset();
