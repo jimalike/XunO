@@ -41,6 +41,17 @@
         .modal-backdrop {
             display: none;
         }
+
+        #btnbox{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        @media all and (max-width:600px){
+            #btnbox{
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 
@@ -86,20 +97,20 @@
     </div>
 
     <div id="signupbox" data-mode="0" class="gap-2">
-        <label style="color: #ececec; width: 50%; text-align: center;" for="#input-email-login">
-            <h6>Please enter your email and password to login.</h6>
+        <label style="color: #ececec; width: 60%; text-align: center;" for="#input-email-login">
+            <h6 style="font-size: small;">Please enter your email and password to login.</h6>
         </label>
 
         <input type="text" id="input-username-signup" placeholder="Username"
-            style="text-align: center; width: 50%; height: 40px;">
+            style="text-align: center; width: 60%; height: 40px; font-size: 12px;">
 
         <input type="email" id="input-email-signup" placeholder="Email"
-            style="text-align: center; width: 50%; height: 40px;">
+            style="text-align: center; width: 60%; height: 40px; font-size: 12px;">
 
         <input type="password" id="input-password-signup" placeholder="Password"
-            style="text-align: center; width: 50%; height: 40px;">
+            style="text-align: center; width: 60%; height: 40px; font-size: 12px;">
 
-        <div class="d-flex justify-content-center align-items-center gap-2 flex-xs-column">
+        <div id="btnbox" class="gap-2">
             <button type="button" onclick="createUser()" class="btn btn-lg main-bt logged-out"  style="width: 100px; font-size: 12px;">
                         Sign up
             </button>
