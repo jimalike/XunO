@@ -29,16 +29,36 @@
             color: white;
             background-color: #1D1E22;
         }
+
+        @media all and (min-width:768px) and (max-width:991px) {
+            .respondBtn{
+                position: absolute;
+                bottom:8%;
+            }
+        }
+        @media all and (min-width:576px) and (max-width:768px) {
+            .respondBtn{
+                position: absolute;
+                bottom:8%;
+            }
+        }
+
+        @media all and (max-width:576px) {
+            .respondBtn{
+                position: absolute;
+                bottom:1;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-3">
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-12 col-lg-3">
                 <div class="d-flex flex-column justify-content-center align-items-center flex-wrap flex-column gap-2"
-                    style="border-radius: 30px; border: 5px solid white;">
+                    style="border-radius: 30px; border: 5px solid white; height:500px; margin-bottom:20px;">
                     <label style="color: #ececec; text-align: center;" for="#input-email-login">
-                        <h3>Your current score</h3>
+                        <h3 style="margin-top: 10px;">Your current score</h3>
                     </label>
                     <div
                         style="display: flex; flex-wrap: wrap; height: fit-content; align-items: center; margin-top: 40px; justify-content: center; text-align: center; color:white;">
@@ -51,17 +71,14 @@
                         </h4>
                     </div>
                 </div>
-                <div class="justify-content-center align-items-center">
-                    <a type="button" class="btn btn-outline-primary main-bt btn-lg align-self-center" href="jimmy.html"
-                        class="link" style="margin-top:10px;">Back to menu
-                    </a>
-                </div>
-
+                <a type="button" class="btn btn-outline-primary main-bt btn-lg d-flex flex-column justify-content-center respondBtn" href="jimmy.html"
+                    class="link" style="margin-top:10px;">Back to menu
+                </a>
             </div>
-            <div class="col-1"></div>
-            <div class="col-8 d-flex flex-column gap-2 mx-auto"
+            <div class="col-sm-1"></div>
+            <div class="col-12 col-lg-8 d-flex flex-column gap-2 mx-auto"
                 style="border-radius: 30px; border: 5px solid white;">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between" style="margin-top: 50px;">
                     <div style="font-size:30px; color: #ececec;">Name</div>
                     <div style="font-size:30px; color: #ececec;">Score</div>
                   </div>
@@ -77,6 +94,10 @@
                 <!-- </label> -->
 
             </div>
+            <!-- d-flex flex-column justify-content-center align-items-center -->
+                <!-- <a type="button" class="btn btn-outline-primary main-bt btn-lg align-self-center respondBtn" href="jimmy.html"
+                    class="link" style="margin-top:10px;">Back to menu
+                </a> -->
         </div>
     </div>
     <script>
