@@ -19,6 +19,7 @@ function createUser() {
                 loss: 0,
                 allmatch: 0,
                 winrate: 0,
+                score:0,
             }
             reffer.child('user/' + user.uid).set(user_data)
             window.location.href = `jimmy.html`;

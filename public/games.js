@@ -213,6 +213,13 @@ ref.on('value', snapshot => {
 
             var matchUpdateX = parseInt(snapshot.child("user").child(Playeruidx).child("allmatch").val()) + 1;
             var matchUpdateO = parseInt(snapshot.child("user").child(Playeruido).child("allmatch").val()) + 1;
+
+            var xscore = parseInt(snapshot.child("user").child(Playeruido).child("score").val()) + 2;
+            var oscore = parseInt(snapshot.child("user").child(Playeruido).child("score").val()) + 2;
+            var xscoretie = parseInt(snapshot.child("user").child(Playeruido).child("score").val()) ;
+            var oscoretie = parseInt(snapshot.child("user").child(Playeruido).child("score").val()) ;
+            var xscorelose = parseInt(snapshot.child("user").child(Playeruido).child("score").val()) -1;
+            var oscorelose = parseInt(snapshot.child("user").child(Playeruido).child("score").val()) -1;
             if (winner == "X") {
                 var winrateX = `${scoreUpdateX}` / `${matchUpdateX}` * 100 + '%';
                 var winrateObutlose = `${scoreO}` / `${matchUpdateO}` * 100 + '%';
@@ -221,14 +228,15 @@ ref.on('value', snapshot => {
                     win: `${scoreUpdateX}`,
                     loss: `${scoreUpdateXnotlose}`,
                     allmatch: `${matchUpdateX}`,
-                    winrate: `${winrateX}`
+                    winrate: `${winrateX}`,
+                    score: `${xscore}`
                 });
                 ref.child("user").child(Playeruido).update({
                     win: `${scoreO}`,
                     loss: `${scoreUpdateOlose}`,
                     allmatch: `${matchUpdateO}`,
-                    winrate: `${winrateObutlose}`
-
+                    winrate: `${winrateObutlose}`,
+                    score: `${oscorelose}`
                 });
             }
             if (winner == "O") {
@@ -239,14 +247,32 @@ ref.on('value', snapshot => {
                     win: `${scoreUpdateO}`,
                     loss: `${scoreUpdateOnotlose}`,
                     allmatch: `${matchUpdateO}`,
-                    winrate: `${winrateO}`
+                    winrate: `${winrateO}`,
+                    score: `${oscore}`
 
                 });
                 ref.child("user").child(Playeruidx).update({
                     win: `${scoreX}`,
                     loss: `${scoreUpdateXlose}`,
                     allmatch: `${matchUpdateX}`,
-                    winrate: `${winrateXbutlose}`
+                    winrate: `${winrateXbutlose}`,
+                    score: `${xscorelose}`
+                });
+            }
+            if (winner == "Tie") {
+                var winrateO = `${scoreUpdateO}` / `${matchUpdateO}` * 100 + '%';
+                var winrateXbutlose = `${scoreX}` / `${matchUpdateX}` * 100 + '%';
+                checkfinish = 1;
+                ref.child("user").child(Playeruido).update({
+                    allmatch: `${matchUpdateO}`,
+                    winrate: `${winrateO}`,
+                    score: `${xscoretie}`
+
+                });
+                ref.child("user").child(Playeruidx).update({
+                    allmatch: `${matchUpdateX}`,
+                    winrate: `${winrateX}`,
+                    score: `${oscoretie}`
                 });
             }
             cardbox.style.display = 'none';
