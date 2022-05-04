@@ -1,23 +1,88 @@
 const ref = firebase.database().ref("Game");
-const user = firebase.database().ref();
 const creategame = document.querySelector(".creategame");
 const display_turnstate = document.querySelector('.display-turnstate');
 const card_text = document.querySelector('#cardEffect');
 
-// Draw the chart and set the chart values
-// ref.on('value', snapshot => {
-//     const username = firebase.auth().currentUser;
-//     uname = snapshot.child(`user`).child(username.uid).child('username').val();
-//     win = parseInt(snapshot.child(`user`).child(username.uid).child('win').val());
-//     loss = parseInt(snapshot.child(`user`).child(username.uid).child('loss').val());
-//     winrate = parseInt(snapshot.child(`user`).child(username.uid).child('winrate').val());
-//     allmatch = parseInt(snapshot.child(`user`).child(username.uid).child('allmatch').val());
-//     console.log(uname);
-//     console.log(win);
-//     console.log(loss);
-//     console.log(winrate);
-//     console.log(allmatch);
-// });
+
+const user = firebase.auth().currentUser;
+const refscore = firebase.database().ref("Game").child('user');
+
+ref.on("value", snapshot => {
+    let listplayerid = [];
+    let listplayeridscore = [];
+    snapshot.child('user').forEach(function (childsnapshot) {
+        listplayerid.push(childsnapshot.key);
+        listplayeridscore.push(childsnapshot.val());
+    });
+    var playerscore = new Array;
+    for (let i = 0; i < listplayeridscore.length; i++) {
+        let uid = listplayerid[i];
+        let score = listplayeridscore[i].score;
+        let name = listplayeridscore[i].username;
+        let match = listplayeridscore[i].allmatch;
+        var arr = {
+            uid: uid, score: score, username: name, allmatch: match
+        }
+        playerscore = playerscore.concat(arr);
+    }
+    sortscore(playerscore)
+    if (document.title == "Leaderboard") {
+        playerscoreboard(playerscore)
+    }
+});
+function sortscore(ScoreArr) {
+    ScoreArr.sort((item2, item1) => {
+        return item1.socre - item2.score
+    })
+}
+
+function playerscoreboard(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        const newDiv = `<li  class="d-flex list-group-item justify-content-between">
+        <div>${arr[i].username}</div> 
+        <div>${arr[i].score}</div>
+    </li>`;
+        const newElement = document.createRange().createContextualFragment(newDiv);
+        document.getElementById("name-list").appendChild(newElement);
+    }
+}
+
+if (document.title == "Leaderboard") {
+    ref.once("value", snapshot => {
+        const username = firebase.auth().currentUser;
+        uname = snapshot.child(`user`).child(username.uid).child('username').val();
+        win = parseInt(snapshot.child(`user`).child(username.uid).child('win').val());
+        loss = parseInt(snapshot.child(`user`).child(username.uid).child('loss').val());
+        winrate = parseInt(snapshot.child(`user`).child(username.uid).child('winrate').val());
+        allmatch = parseInt(snapshot.child(`user`).child(username.uid).child('allmatch').val());
+        score = parseInt(snapshot.child(`user`).child(username.uid).child('score').val());
+        document.getElementById('Score').innerHTML = `Score: ${score}`;
+        document.getElementById('Win').innerHTML = `Win: ${win}`;
+        document.getElementById('Lose').innerHTML = `Lose: ${loss}`;
+        document.getElementById('Winrate').innerHTML = `Winrate: ${winrate}`;
+        document.getElementById('Total game').innerHTML = `Total game: ${allmatch}`;
+    });
+}
+//     function Readscore(snapshot) {
+//         document.getElementById("name-list").innerHTML = ``;
+//         snapshot.forEach((data) => {
+//             const username = data.val().username;
+//             const score = data.val().score;
+//             const newDiv = `<li  class="d-flex list-group-item justify-content-between">
+//                             <div>${username}</div> 
+//                             <div>${score}</div> 
+//                         </li>`;
+
+
+//             const newElement = document.createRange().createContextualFragment(newDiv);
+//             document.getElementById("name-list").appendChild(newElement);
+//         });
+//     };
+
+//     refscore.on("value", (data) => {
+//         Readscore(data)
+//     })
+// }
 if (document.title == 'Main menu') {
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawChart);
@@ -29,11 +94,6 @@ if (document.title == 'Main menu') {
             loss = parseInt(snapshot.child(`user`).child(username.uid).child('loss').val());
             winrate = parseInt(snapshot.child(`user`).child(username.uid).child('winrate').val());
             allmatch = parseInt(snapshot.child(`user`).child(username.uid).child('allmatch').val());
-            console.log(uname);
-            console.log(win);
-            console.log(loss);
-            console.log(winrate);
-            console.log(allmatch);
             var data = google.visualization.arrayToDataTable([
                 ['Task', 'Winrate'],
                 ['Win', win],
@@ -155,7 +215,7 @@ function join() {
                 });
                 window.location.href = `game.html?id=${roomid}`;
             }
-            else{
+            else {
                 setTimeout(function () {
                     document.getElementById("status").innerHTML = "";
                 }, 1500);
@@ -216,10 +276,10 @@ ref.on('value', snapshot => {
 
             var xscore = parseInt(snapshot.child("user").child(Playeruido).child("score").val()) + 2;
             var oscore = parseInt(snapshot.child("user").child(Playeruido).child("score").val()) + 2;
-            var xscoretie = parseInt(snapshot.child("user").child(Playeruido).child("score").val()) ;
-            var oscoretie = parseInt(snapshot.child("user").child(Playeruido).child("score").val()) ;
-            var xscorelose = parseInt(snapshot.child("user").child(Playeruido).child("score").val()) -1;
-            var oscorelose = parseInt(snapshot.child("user").child(Playeruido).child("score").val()) -1;
+            var xscoretie = parseInt(snapshot.child("user").child(Playeruido).child("score").val());
+            var oscoretie = parseInt(snapshot.child("user").child(Playeruido).child("score").val());
+            var xscorelose = parseInt(snapshot.child("user").child(Playeruido).child("score").val()) - 1;
+            var oscorelose = parseInt(snapshot.child("user").child(Playeruido).child("score").val()) - 1;
             if (winner == "X") {
                 var winrateX = `${scoreUpdateX}` / `${matchUpdateX}` * 100 + '%';
                 var winrateObutlose = `${scoreO}` / `${matchUpdateO}` * 100 + '%';
@@ -285,19 +345,19 @@ ref.on('value', snapshot => {
 
 // ยอมแพ้
 function surrender() {
-    ref.once("value",snapshot => {
+    ref.once("value", snapshot => {
         Playerx = snapshot.child(`${params.id}`).child('PlayerX').val();
         Playero = snapshot.child(`${params.id}`).child('PlayerO').val();
         userX = snapshot.child(`${params.id}`).child('PlayerXusername').val();
         userO = snapshot.child(`${params.id}`).child('PlayerOusername').val();
         const currentUser = firebase.auth().currentUser;
-        if(currentUser.email == Playerx){
+        if (currentUser.email == Playerx) {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player O ' + `(${userO})` + ' win',
                 winner: "O",
             });
         }
-        else if(currentUser.email == Playero){
+        else if (currentUser.email == Playero) {
             ref.child(`${params.id}`).update({
                 display_turnstate: 'Player X ' + `(${userX})` + ' win',
                 winner: "X",
