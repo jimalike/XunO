@@ -59,7 +59,7 @@ if (document.title == "Leaderboard") {
         document.getElementById('Score').innerHTML = `Score: ${score}`;
         document.getElementById('Win').innerHTML = `Win: ${win}`;
         document.getElementById('Lose').innerHTML = `Lose: ${loss}`;
-        document.getElementById('Winrate').innerHTML = `Winrate: ${winrate}`;
+        document.getElementById('Winrate').innerHTML = `Winrate: ${winrate}%`;
         document.getElementById('Total game').innerHTML = `Total game: ${allmatch}`;
     });
 }
